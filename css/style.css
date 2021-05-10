@@ -11,6 +11,7 @@ main{
     width: 20em;
     height: 10em;
     background-color: wheat;
+    overflow: hidden;
 }
 
 #fighter{
