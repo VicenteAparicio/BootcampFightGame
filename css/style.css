@@ -1,10 +1,10 @@
 body{
     all: unset;
     width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 
 /* FASE SCREENS */
@@ -15,8 +15,6 @@ body{
     width: 100%;
     height: 100%;
 }
-
-
 #fightScreen{
     display: none;
     background-color: darkred;
@@ -26,36 +24,42 @@ body{
 }
 /* START FASE */
 #start{
-    background-color: darkgreen;
+    height: 100vh;
 }
 #startButton{
     font-size: 2em;
 }
 /* CHOOSE FASE */
 #chooseF{
+    box-sizing: border-box;
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blue;
+}
+/* TOP AREA SELECTION HERO */
+#chooseButton{
+    font-size: 3em;
+    margin: 2em 0 1.5em 0;
+}
+#dreamSpaceBox{
+    height: 3em;
 }
 #characterBoxPics{
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    align-items: center;
-    background-color: deepskyblue;
-    height: 30em;
-    width: 100%;
+    width: 70%;
+    min-width: 20em;
 }
-#characterDropBox{
+.cBoxPic{
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items:center;
-    background-color: dimgray;
+    align-items: center;
+    width: 12em;
     height: 12em;
-    width: 100%;
+    border: .3em dotted greenyellow;
 }
 .characterPic{
     display: flex;
@@ -63,31 +67,61 @@ body{
     align-items: center;
     height: 5em;
     width: 4em;
-    background-color: rgb(133, 89, 2);
+}
+/* BOTTOM AREA SELECTED TEAMS */
+.centerBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#characterDropBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.blockTeam{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    min-width: 30em;
 }
 .dropBox{
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
-    height: 10em;
-    width: 50%;    
+    flex-wrap: wrap;
+    width: 90%;
+    border: .3em solid greenyellow;
+    padding: 1em;    
 }
-#team1{
-    background-color: red;
-}
-#team2{
-    background-color: yellow;
+.titleTeams{
+    font-size: 1.5em;
+    padding: 1.5em;
 }
 .dropPic{
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
-    width: 12em;
-    background-color: indianred;
+    height: 10em;
+    width: 10em;
+    border: .3em dotted greenyellow;
 }
-
+#fightButton{
+    margin: 1.5em 0 0 0 ;
+    font-size: 3em;
+}
+.footer{
+    display: flex;
+    height: 4em;
+    width: 100%;
+}
 /* FIGHTER */
 #fighter{
     position: relative;

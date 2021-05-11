@@ -15,26 +15,34 @@
         <span id="startButton" onclick="changeFase('chooseF')">Start</span>
     </section>
     <section id="chooseF" class="screen cLight font">
-        <div id="characterBoxPics" class="boxes">
-            <div class="cBoxPic"><img id="p1" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Blue.png" alt="Player1" ></div>
-            <div class="cBoxPic"><img id="p2" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Darksaid.png" alt="Player2" ></div>
-            <div class="cBoxPic"><img id="p3" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Foxel.jpg" alt="Player3" ></div>
-            <div class="cBoxPic"><img id="p4" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Page.png" alt="Player4" ></div>
+        <span id="chooseButton">CHOOSE YOUR FIGHTERS!!</span>
+        <div id="characterBoxPics">
+            <div class="cBoxPic"  ondrop="drop(event)" ondragover="allowDrop(event)"><img id="p1" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Blue.png" alt="Player1" ></div>
+            <div class="cBoxPic" ondrop="drop(event)" ondragover="allowDrop(event)"><img id="p2" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Darksaid.png" alt="Player2"></div>
+            <div class="cBoxPic" ondrop="drop(event)" ondragover="allowDrop(event)"><img id="p3" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Foxel.jpg" alt="Player3"></div>
+            <div class="cBoxPic" ondrop="drop(event)" ondragover="allowDrop(event)"><img id="p4" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Page.png" alt="Player4"></div>
         </div>
-        <div id="characterDropBox" class="boxes">
-            <div id="team1" class="dropBox">
-                <div ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
-                <div ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
+        <div id="characterDropBox">
+            <div id="blockRight" class="blockTeam">
+                <span id="titleTeam1" class="titleTeams">TEAM 1</span>
+                <div id="team1" class="dropBox">
+                    <div ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
+                    <div ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
+                </div>
             </div>
-
-            <div id="team2" class="dropBox">
-                <div ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
-                <div ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
+            <div id="blockLeft" class="blockTeam">
+                <span id="titleTeam2" class="titleTeams">TEAM 2</span>
+                <div id="team2" class="dropBox">
+                    <div ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
+                    <div ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
+                </div>
             </div>
         </div>
-        <span id="startButton" onclick="changeFase('fightScreen')">SELECT FIGHTER</span>
+        <span id="fightButton" onclick="changeFase('fightScreen')">GO FIGHT!!</span>
+        <div class="footer"></div>
     </section>
     <section id="fightScreen" class="screen">
+        <!-- <canvas id="canvasScenario" width="1800" height="900"> -->
         <main id="scenario">
             <div id="fighter"></div>
         </main>
