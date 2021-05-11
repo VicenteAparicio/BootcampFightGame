@@ -15,29 +15,86 @@ body{
     width: 100%;
     height: 100%;
 }
-#start{
-    background-color: darkgreen;
-}
-#chooseF{
-    display: none;
-    background-color: blue;
-}
+
+
 #fightScreen{
     display: none;
     background-color: darkred;
 }
 #scenario{
-
     background-color: wheat;
 }
+/* START FASE */
+#start{
+    background-color: darkgreen;
+}
+#startButton{
+    font-size: 2em;
+}
+/* CHOOSE FASE */
+#chooseF{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+}
+#characterBoxPics{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: deepskyblue;
+    height: 30em;
+    width: 100%;
+}
+#characterDropBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    background-color: dimgray;
+    height: 12em;
+    width: 100%;
+}
+.characterPic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5em;
+    width: 4em;
+    background-color: rgb(133, 89, 2);
+}
+.dropBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 10em;
+    width: 50%;    
+}
+#team1{
+    background-color: red;
+}
+#team2{
+    background-color: yellow;
+}
+.dropPic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 12em;
+    background-color: indianred;
+}
+
+
+
+
 /* FIGHTER */
 #fighter{
     position: relative;
     width: 1em;
     height: 1em;
     background-color: tomato;
-}
-/* BUTTONS AND TEXT */
-#startButton{
-    font-size: 2em;
 }
