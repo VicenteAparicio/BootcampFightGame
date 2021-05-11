@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors.css" rel="stylesheet">
     <title>Bootcamp Fight Game</title>
 </head>
 <body>
-    <main>
-        <div id="fighter" ></div>
-    </main>
+    <section id="start" class="screen cLight font">
+        <span id="startButton" onclick="changeFase('chooseF')">Start</span>
+    </section>
+    <section id="chooseF" class="screen cLight font">
+        <span id="startButton" onclick="changeFase('fightScreen')">SELECT FIGHTER</span>
+    </section>
+    <section id="fightScreen" class="screen">
+        <main id="scenario">
+            <div id="fighter" ></div>
+        </main>
+    </section>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -7,16 +7,37 @@ body{
     align-items: center;
 }
 
-main{
-    width: 20em;
-    height: 10em;
-    background-color: wheat;
-    overflow: hidden;
+/* FASE SCREENS */
+.screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
+#start{
+    background-color: darkgreen;
+}
+#chooseF{
+    display: none;
+    background-color: blue;
+}
+#fightScreen{
+    display: none;
+    background-color: darkred;
+}
+#scenario{
 
+    background-color: wheat;
+}
+/* FIGHTER */
 #fighter{
     position: relative;
     width: 1em;
     height: 1em;
     background-color: tomato;
+}
+/* BUTTONS AND TEXT */
+#startButton{
+    font-size: 2em;
 }
