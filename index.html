@@ -19,7 +19,7 @@
         <div id="characterBoxPics">
             <div class="cBoxPic"><img id="1" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Blue.png" alt="Player1"></div>
             <div class="cBoxPic"><img id="2" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Darksaid.png" alt="Player2"></div>
-            <div class="cBoxPic"><img id="3" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Foxel.jpg" alt="Player3"></div>
+            <div class="cBoxPic"><img id="3" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Foxel.png" alt="Player3"></div>
             <div class="cBoxPic"><img id="4" class="characterPic" draggable="true" ondragstart="drag(event)" src="img/Page.png" alt="Player4"></div>
         </div>
         <div id="characterDropBox">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <span id="fightButton" onclick="changeFase('fightScreen')">GO FIGHT!!</span>
+        <span id="fightButton" onclick="changeFase('fightScreen'), placeFighter(0)">GO FIGHT!!</span>
         <div class="footer"></div>
     </section>
     <section id="fightScreen" class="screen">
@@ -52,7 +52,9 @@
                 <div id="topFighter" class="box boxFighter"></div>
                 <div id="centerBox" class="box">
                     <div id="leftFist" class="fists"></div>
-                    <div class="space"></div>
+                    <div class="space">
+                        <span class="titleTeams" onclick="fighting()">GO FIGHT!!</span>
+                    </div>
                     <div id="rightFist" class="fists"></div>
                 </div>
                 <div id="bottomFighter" class="box boxFighter"></div>

@@ -93,24 +93,25 @@ const drop = (ev) => {
 
 /* CONSTRUCTOR FIGHTERS */
 class Fighter{
-    constructor(nombre, ataque, defensa, velocidad, suerte){
+    constructor(id, nombre, ataque, defensa, velocidad, suerte){
+        this.id = id;
         this.nombre = nombre;
         this.ataque = ataque;
         this.defensa = defensa;
         this.velocidad = velocidad;
-        this.suerte = Math.floor(Math.random()*suerte);
+        this.suerte = (Math.round((Math.random()*suerte)*100)/100)+1;
         this.vida = 60;
     };
 
     hit(enemy){
-        enemy.vida-=this.ataque - (enemy.defensa*enemy.suerte*this.velocidad);
+        enemy.vida-=(this.ataque - (enemy.defensa/enemy.suerte));
     }
 }
 
-let player1 = new Fighter('Smith', 9, 4, 6, 5);
-let player2 = new Fighter('Walker', 8, 5, 5, 6);
-let player3 = new Fighter('Cumbert', 7, 6, 7, 8) ;
-let player4 = new Fighter('Rosling', 8, 6, 6, 5);
+let player1 = new Fighter(1, 'Blue', 9, 4, 6, 5);
+let player2 = new Fighter(2, 'Darksaid', 8, 5, 5, 6);
+let player3 = new Fighter(3, 'Foxel', 7, 6, 7, 8) ;
+let player4 = new Fighter(4, 'Page', 6, 6, 6, 5);
 
 
 let allPlayers = {
@@ -137,15 +138,63 @@ const chooseFighter = (fighter, team) => {
     document.getElementById(fighter).draggable = false;
 };
 
+/* ASIGNATION CHARACTER TO FIGHT SCENE */ 
+let topF;
+let bottomF;
+let deadF;
+const placeFighter = (index) => {
+    topF = team1[index];
+    bottomF = team2[index];
+
+    document.getElementById('topFighter').innerHTML = `<img id="${topF.id}" src="img/${topF.nombre}.png" class="characterPic" alt="Player${topF.id}">`;
+    document.getElementById('bottomFighter').innerHTML = `<img id="${bottomF.id}" src="img/${bottomF.nombre}.png" class="characterPic" alt="Player${bottomF.id}">`; 
+}
+const changeDeadFighterTop = (index, positionF) => {
+    deadF = team1[index];
+    document.getElementById(positionF).innerHTML = "";
+    document.getElementById(positionF).innerHTML = `<img id="${deadF.id}" src="img/${deadF.nombre}.png" class="characterPic" alt="Player${deadF.id}">`;
+}
+const changeDeadFighterBottom = (index, positionF) => {
+    dead = team2[index];
+    document.getElementById(positionF).innerHTML = "";
+    document.getElementById(positionF).innerHTML = `<img id="${dead.id}" src="img/${dead.nombre}.png" class="characterPic" alt="Player${dead.id}">`;
+}
+
+
 /* FIGHT ACTION */
+let countTop=0;
+let countBottom=0;
 const fighting = () => {
-    p1 = team1[0];
-    p2 = team2[0];
-    do{
-        p1.hit(p2);
-        p2.hit(p1);
-        console.log(`${p1.nombre} tiene: ${p1.vida} de vida`);
-        console.log(`${p2.nombre} tiene ${p2.vida} de vida`);
-    } while (p1.vida >0 && p2.vida>0)
+    p1 = team1[countTop];
+    p2 = team2[countBottom];
+
+    p1.hit(p2);
+    p2.hit(p1);
+    console.log(`${p1.nombre} tiene: ${p1.vida} de vida`);
+    console.log(`${p2.nombre} tiene ${p2.vida} de vida`);
+
+
+    if (p1.vida<=0){
+        if(countTop<1){
+            console.log(`Este combate lo ha ganado ${p2.nombre}`);
+            countTop+=1;
+            changeDeadFighterTop(countTop, 'topFighter');
+        } else {
+            console.log(`Este combate lo ha ganado ${p2.nombre}`);
+        }
+
+    }
+    if (p2.vida<=0){
+        if(countBottom<1){
+            console.log(`Este combate lo ha ganado ${p1.nombre}`);
+            countBottom+=1;
+            changeDeadFighterBottom(countBottom, 'bottomFighter');
+        } else {
+            console.log(`Este combate lo ha ganado ${p1.nombre}`);
+        }
+    }
+    // if (p2.vida<=0 && countBottom ==1 || p1.vida<=0 && countTop ==1){
+    //     changeFase('Results');
+    // }
 }
 
