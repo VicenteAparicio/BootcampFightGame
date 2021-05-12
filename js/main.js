@@ -130,9 +130,13 @@ const chooseFighter = (fighter, team) => {
     if (team1.length==2 && team2.length==2){
         console.log(`El team 1 son: ${team1[0].nombre} y ${team1[1].nombre}`);
         console.log(`El team 2 son: ${team2[0].nombre} y ${team2[1].nombre}`);
+        allowFight();
     }
     document.getElementById(fighter).draggable = false;
 };
+const allowFight = () => {
+    document.getElementById('fightButton').innerHTML = `<span onclick="changeFase('fightScreen'), placeFighter(0)">GO FIGHT</span>`;
+}
 
 /* ASIGNATION CHARACTER TO FIGHT SCENE */ 
 let topF;

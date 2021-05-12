@@ -13,21 +13,22 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    max-width: 1920px;
+    height: 100vmin;
 }
 
 /* START FASE */
 #start{
     height: 100vmin;
-    
 }
 #startButton{
     font-size: 2em;
+}
+.pusher{
     cursor: pointer;
 }
 /* CHOOSE FASE */
 #chooseF{
-    box-sizing: border-box;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -37,6 +38,7 @@ body{
 #chooseButton{
     font-size: 3em;
     margin: 2em 0 1.5em 0;
+    text-align: center;
 }
 #dreamSpaceBox{
     height: 3em;
@@ -100,7 +102,6 @@ body{
 .titleTeams{
     font-size: 1.5em;
     padding: 1.5em;
-    cursor: pointer;
 }
 .dropPic{
     box-sizing: border-box;
@@ -114,7 +115,6 @@ body{
 #fightButton{
     margin: 1.5em 0 0 0 ;
     font-size: 3em;
-    cursor: pointer;
 }
 .footer{
     display: flex;
@@ -126,7 +126,6 @@ body{
     display: none;
     flex-direction: column;
     height: 100vmin;
-    background-color: darkred;
 }
 /* #scenario{
     background-color: wheat;
@@ -151,9 +150,7 @@ body{
 #leftScene{
     background-color: cyan;
 }
-#centerScene{
-    background-color: darkorange;
-}
+
 .boxFighter{
     display: flex;
     justify-content: center;
@@ -161,7 +158,6 @@ body{
 }
 #topFighter{
     height: 30%;
-    background-color: green;
 }
 #centerBox{
     display: flex;
@@ -169,7 +165,6 @@ body{
     justify-content: center;
     align-items: center;
     height: 30%;
-    background-color: lawngreen;
 }
 #leftFist{
     display: flex ;
@@ -182,10 +177,8 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    cursor: pointer;
     height: 90%;
     width: 30%;
-    background-color: rgb(146, 146, 255);
 }
 #rightFist{
     display: flex ;
@@ -195,7 +188,6 @@ body{
 }
 #bottomFighter{
     height: 30%;
-    background-color: rgb(0, 189, 0);
 }
 #rightScene{
     background-color: deeppink;

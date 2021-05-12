@@ -12,7 +12,7 @@
 </head>
 <body>
     <section id="start" class="screen cLight font">
-        <span id="startButton" onclick="changeFase('chooseF')">Start</span>
+        <span id="startButton" class="pusher" onclick="changeFase('chooseF')">Start</span>
     </section>
     <section id="chooseF" class="screen cLight font">
         <span id="chooseButton">CHOOSE YOUR FIGHTERS!!</span>
@@ -31,21 +31,21 @@
                 </div>
             </div>
             <div id="blockLeft" class="blockTeam">
-                <span id="titleTeam2" class="titleTeams">TEAM 2</span>
+                <span class="titleTeams">TEAM 2</span>
                 <div id="team2" class="dropBox">
                     <div id="1T2" ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
                     <div id="2T2" ondrop="drop(event)" ondragover="allowDrop(event)" class="dropPic"></div>
                 </div>
             </div>
         </div>
-        <span id="fightButton" onclick="changeFase('fightScreen'), placeFighter(0)">GO FIGHT!!</span>
+        <div id="fightButton" class="pusher"></div>
         <div class="footer"></div>
     </section>
-    <section id="fightScreen" class="screen">
+    <section id="fightScreen" class="screen cLight font">
         <!-- <main id="scenario">
             <div id="fighter"></div>
         </main> -->
-        <span id="titleTeam2" class="titleTeams">MADNESS!!</span>
+        <span class="titleTeams">MADNESS!!</span>
         <div id="fightScene">
             <div id="leftScene" class="sectionScene"></div>
             <div id="centerScene" class="sectionScene">
@@ -53,7 +53,7 @@
                 <div id="centerBox" class="box">
                     <div id="leftFist" class="fists"></div>
                     <div class="space">
-                        <span class="titleTeams cLight font" onclick="fighting()">FIGHT!!</span>
+                        <span class="titleTeams pusher" onclick="fighting()">FIGHT!!</span>
                     </div>
                     <div id="rightFist" class="fists"></div>
                 </div>
