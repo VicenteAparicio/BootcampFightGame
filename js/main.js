@@ -1,6 +1,4 @@
 // MOVEMENT FIGHTER
-
-
 let x_pos=0;
 let y_pos=0;
 
@@ -56,31 +54,98 @@ systemOn();
 
 // CHANGE FASE
 const changeFase = (destino) => {
-    
     let arrFase = ["start","chooseF","fightScreen"];
-
     arrFase = arrFase.filter(val => !destino.includes(val));
-
     document.getElementById(destino).style.display = "flex";
-
     for(let _fase of arrFase){
         document.getElementById(_fase).style.display = "none";
     }
-
 };
 
 /* DRAG AND DROP FUNCTION */
-
-function allowDrop(ev) {
+let validate = 1;
+const allowDrop = (ev) => {
     ev.preventDefault();
 }
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
+const drag = (ev) => {
+    ev.dataTransfer.setData("id", ev.target.id); //STORE id from target fighter to 'id' key
+}
 
-function drop(ev) {
+const drop = (ev) => {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
+    let data = ev.dataTransfer.getData("id");
     ev.target.appendChild(document.getElementById(data));
+
+    /* CALL TO CHOOSE FIGHTER FUNCTION WITH ID AND TEAM PARAMETER */ 
+    let teamSelect = ev.path[1].id;
+    console.log('Fighter ID '+ data)
+    console.log('Which team you drop? '+ teamSelect)
+    chooseFighter(data, teamSelect)
+
+    /* PREVENT OVERLAP */
+    ev.target.ondrop="";
 }
+// const deleteTeamFighter = (ev) => {
+//     console.log(ev)
+
+// }
+
+/* CONSTRUCTOR FIGHTERS */
+class Fighter{
+    constructor(nombre, ataque, defensa, velocidad, suerte){
+        this.nombre = nombre;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.velocidad = velocidad;
+        this.suerte = Math.floor(Math.random()*suerte);
+        this.vida = 60;
+    };
+
+    hit(enemy){
+        enemy.vida-=this.ataque - (enemy.defensa*enemy.suerte*this.velocidad);
+    }
+}
+
+let player1 = new Fighter('Smith', 9, 4, 6, 5);
+let player2 = new Fighter('Walker', 8, 5, 5, 6);
+let player3 = new Fighter('Cumbert', 7, 6, 7, 8) ;
+let player4 = new Fighter('Rosling', 8, 6, 6, 5);
+
+
+let allPlayers = {
+    '1' : player1,
+    '2' : player2,
+    '3' : player3,
+    '4' : player4
+};
+
+/* ASIGNATION TEAMS */
+let team1 = [];
+let team2 = [];
+
+const chooseFighter = (fighter, team) => { 
+    if (team=='team1' && team1.length<2){
+        team1.push(allPlayers[fighter]);
+    } else if (team == 'team2' && team2.length<2) {
+        team2.push(allPlayers[fighter]);
+    }
+    if (team1.length==2 && team2.length==2){
+        console.log(`El team 1 son: ${team1[0].nombre} y ${team1[1].nombre}`);
+        console.log(`El team 2 son: ${team2[0].nombre} y ${team2[1].nombre}`);
+    }
+    document.getElementById(fighter).draggable = false;
+};
+
+/* FIGHT ACTION */
+const fighting = () => {
+    p1 = team1[0];
+    p2 = team2[0];
+    do{
+        p1.hit(p2);
+        p2.hit(p1);
+        console.log(`${p1.nombre} tiene: ${p1.vida} de vida`);
+        console.log(`${p2.nombre} tiene ${p2.vida} de vida`);
+    } while (p1.vida >0 && p2.vida>0)
+}
+

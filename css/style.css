@@ -15,13 +15,7 @@ body{
     width: 100%;
     height: 100%;
 }
-#fightScreen{
-    display: none;
-    background-color: darkred;
-}
-#scenario{
-    background-color: wheat;
-}
+
 /* START FASE */
 #start{
     height: 100vh;
@@ -57,8 +51,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12em;
-    height: 12em;
+    width: 6em;
+    height: 6em;
     border: .3em dotted greenyellow;
 }
 .characterPic{
@@ -122,6 +116,76 @@ body{
     height: 4em;
     width: 100%;
 }
+/* FIGHT SCENE */
+#fightScreen{
+    display: none;
+    flex-direction: column;
+    height: 100vmin;
+    background-color: darkred;
+}
+/* #scenario{
+    background-color: wheat;
+} */
+#fightScene{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    width: 100%;
+    height: 100%;
+}
+.sectionScene{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90%;
+    width: 30%;
+}
+#leftScene{
+    background-color: cyan;
+}
+#centerScene{
+    background-color: darkorange;
+}
+#topFighter{
+    height: 30%;
+    background-color: green;
+}
+#centerBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    background-color: lawngreen;
+}
+#leftFist{
+    display: ;
+    height: 90%;
+    width: 30%;
+    background-color: blue;
+}
+.space{
+    display: ;
+    height: 90%;
+    width: 30%;
+    background-color: rgb(146, 146, 255);
+}
+#rightFist{
+    display: ;
+    height: 90%;
+    width: 30%;
+    background-color: blue;
+}
+#bottomFighter{
+    height: 30%;
+    background-color: rgb(0, 189, 0);
+}
+#rightScene{
+    background-color: deeppink;
+}
+
 /* FIGHTER */
 #fighter{
     position: relative;
