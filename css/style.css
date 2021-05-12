@@ -18,10 +18,12 @@ body{
 
 /* START FASE */
 #start{
-    height: 100vh;
+    height: 100vmin;
+    
 }
 #startButton{
     font-size: 2em;
+    cursor: pointer;
 }
 /* CHOOSE FASE */
 #chooseF{
@@ -61,6 +63,7 @@ body{
     align-items: center;
     height: 5em;
     width: 4em;
+    cursor: pointer;
 }
 /* BOTTOM AREA SELECTED TEAMS */
 .centerBox{
@@ -97,6 +100,7 @@ body{
 .titleTeams{
     font-size: 1.5em;
     padding: 1.5em;
+    cursor: pointer;
 }
 .dropPic{
     box-sizing: border-box;
@@ -110,6 +114,7 @@ body{
 #fightButton{
     margin: 1.5em 0 0 0 ;
     font-size: 3em;
+    cursor: pointer;
 }
 .footer{
     display: flex;
@@ -167,19 +172,23 @@ body{
     background-color: lawngreen;
 }
 #leftFist{
-    display: block ;
+    display: flex ;
     height: 90%;
     width: 30%;
     background-color: blue;
 }
 .space{
-    display: block ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
     height: 90%;
     width: 30%;
     background-color: rgb(146, 146, 255);
 }
 #rightFist{
-    display: block ;
+    display: flex ;
     height: 90%;
     width: 30%;
     background-color: blue;
@@ -192,10 +201,21 @@ body{
     background-color: deeppink;
 }
 
-/* FIGHTER */
+/* FIGHTER
 #fighter{
     position: relative;
     width: 1em;
     height: 1em;
     background-color: tomato;
+} */
+
+/* VICTORY SCREEN */
+#victoryScreen{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: darkslategray;
+    height: 100vmin;
+    width: 100%;
+    font-size: 4em;
 }

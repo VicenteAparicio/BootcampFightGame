@@ -54,7 +54,7 @@ systemOn();
 
 // CHANGE FASE
 const changeFase = (destino) => {
-    let arrFase = ["start","chooseF","fightScreen"];
+    let arrFase = ["start","chooseF","fightScreen", 'victoryScreen'];
     arrFase = arrFase.filter(val => !destino.includes(val));
     document.getElementById(destino).style.display = "flex";
     for(let _fase of arrFase){
@@ -86,10 +86,6 @@ const drop = (ev) => {
     /* PREVENT OVERLAP */
     ev.target.ondrop="";
 }
-// const deleteTeamFighter = (ev) => {
-//     console.log(ev)
-
-// }
 
 /* CONSTRUCTOR FIGHTERS */
 class Fighter{
@@ -104,7 +100,7 @@ class Fighter{
     };
 
     hit(enemy){
-        enemy.vida-=(this.ataque - (enemy.defensa/enemy.suerte));
+        enemy.vida-=Math.round(this.ataque - (enemy.defensa/this.suerte));
     }
 }
 
@@ -181,6 +177,8 @@ const fighting = () => {
             changeDeadFighterTop(countTop, 'topFighter');
         } else {
             console.log(`Este combate lo ha ganado ${p2.nombre}`);
+            console.log(`Victoria del Team 2!!`);
+            happy('TEAM 2');
         }
 
     }
@@ -191,10 +189,17 @@ const fighting = () => {
             changeDeadFighterBottom(countBottom, 'bottomFighter');
         } else {
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
+            console.log(`Victoria del Team 1!!`);
+            happy('TEAM 1');
+            
+            
         }
     }
-    // if (p2.vida<=0 && countBottom ==1 || p1.vida<=0 && countTop ==1){
-    //     changeFase('Results');
-    // }
+
 }
 
+/* CONGRATULATIONS */
+const happy = (winner) => {
+    changeFase('victoryScreen');
+    document.getElementById('winnerBox').innerHTML = `<p>HA GANADO EL ${winner}</p>`;
+}
