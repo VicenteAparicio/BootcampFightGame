@@ -1,12 +1,15 @@
 body{
     all: unset;
+    background-color: black;
+}
+#globalContainer{
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    
 }
-
 /* FASE SCREENS */
 .screen{
     display: flex;
@@ -14,7 +17,6 @@ body{
     align-items: center;
     width: 100%;
     max-width: 1920px;
-    height: 100vmin;
 }
 
 /* START FASE */
@@ -36,13 +38,11 @@ body{
 }
 /* TOP AREA SELECTION HERO */
 #chooseButton{
-    font-size: 3em;
-    margin: 2em 0 1.5em 0;
+    font-size: 2em;
+    margin: 1em 0 1.5em 0;
     text-align: center;
 }
-#dreamSpaceBox{
-    height: 3em;
-}
+
 #characterBoxPics{
     display:flex;
     flex-direction: row;
@@ -60,12 +60,10 @@ body{
     border: .3em dotted greenyellow;
 }
 .characterPic{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 5em;
     width: 4em;
     cursor: pointer;
+
 }
 /* BOTTOM AREA SELECTED TEAMS */
 .centerBox{
@@ -89,6 +87,10 @@ body{
     width: 30%;
     min-width: 30em;
 }
+.titleTeams{
+    font-size: 1.5em;
+    padding: 1.5em;
+}
 .dropBox{
     box-sizing: border-box;
     display: flex;
@@ -99,17 +101,13 @@ body{
     border: .3em solid greenyellow;
     padding: 1em;    
 }
-.titleTeams{
-    font-size: 1.5em;
-    padding: 1.5em;
-}
 .dropPic{
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10em;
-    width: 10em;
+    height: 7em;
+    width: 7em;
     border: .3em dotted greenyellow;
 }
 #fightButton{
@@ -132,7 +130,7 @@ body{
 } */
 #fightScene{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: grey;
@@ -144,20 +142,25 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 90%;
-    width: 30%;
+    height: 30%;
+    width: 90em;
 }
-#leftScene{
+#topScene{
     background-color: cyan;
 }
 
 .boxFighter{
+    position: relative;
+    height: 90%;
+    width: 30em;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: darkred;
 }
 #topFighter{
-    height: 30%;
+
+    background-color: darkorchid;
 }
 #centerBox{
     display: flex;
@@ -165,6 +168,7 @@ body{
     justify-content: center;
     align-items: center;
     height: 30%;
+    background-color: darkgoldenrod;
 }
 #leftFist{
     display: flex ;
@@ -179,6 +183,7 @@ body{
     text-align: center;
     height: 90%;
     width: 30%;
+    background-color: darkcyan;
 }
 #rightFist{
     display: flex ;
@@ -187,9 +192,9 @@ body{
     background-color: blue;
 }
 #bottomFighter{
-    height: 30%;
+    background-color: darkolivegreen;
 }
-#rightScene{
+#bottomScene{
     background-color: deeppink;
 }
 
@@ -210,4 +215,5 @@ body{
     height: 100vmin;
     width: 100%;
     font-size: 4em;
+    text-align: center;
 }
