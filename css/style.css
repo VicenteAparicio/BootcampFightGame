@@ -207,6 +207,7 @@ body{
 /* VICTORY SCREEN */
 #victoryScreen{
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: darkslategray;

@@ -64,15 +64,6 @@ function systemOn(){
 };
 systemOn();
 
-// CHANGE FASE
-// const changeFase = (destino) => {
-//     let arrFase = ["start", "chooseF", "fightScreen", 'victoryScreen'];
-//     arrFase = arrFase.filter(val => !destino.includes(val));
-//     document.getElementById(destino).style.display = "flex";
-//     for(let _fase of arrFase){
-//         document.getElementById(_fase).style.display = "none";
-//     }
-// };
 
 const changeFase = (destiny) => {
     let arrayFaseId = [];
@@ -81,7 +72,8 @@ const changeFase = (destiny) => {
         arrayFaseId.push(arrayFase[i].id);
     }
     arrayFaseFade = arrayFaseId.filter(val => !destiny.includes(val));
-    document.getElementById(destiny).style.display = "flex";
+    setTimeout(() => {document.getElementById(destiny).style.display = "flex";}, 1000);
+    
     for(let _fase of arrayFaseFade){
         document.getElementById(_fase).style.display = "none";
     }
@@ -192,12 +184,15 @@ let countBottom=0;
 const fighting = (action) => {
     p1 = team1[countTop];
     p2 = team2[countBottom];
+
     let fighterTop = document.getElementById('topFighter');
     let posX_Top = fighterTop.style.left;
+
     let fighterBottom = document.getElementById('bottomFighter');
     let posX_Bot = fighterBottom.style.left;
-    console.log(posX_Top);
-    console.log(posX_Bot);
+
+    console.log(`Esta es la posición del luchador de arriba ${posX_Top}`);
+    console.log(`Esta es la posición del luchador de abajo ${posX_Bot}`);
 
     if (action == 'topAttack'){
         if (posX_Top==posX_Bot){
@@ -224,7 +219,6 @@ const fighting = (action) => {
             console.log(`Victoria del Team 2!!`);
             happy('TEAM 2');
         }
-
     }
     if (p2.vida<=0){
         if(countBottom<1){
@@ -238,17 +232,17 @@ const fighting = (action) => {
         }
     }
 }
-// const fTopAttack = () => {
-//     let ataqueP1 =  p1.hit(p2);
-//     return ataqueP1;
-// }
-
-// const fBottomAttack = () => {
-//     p1 = team1[countTop]
-// }
 
 /* CONGRATULATIONS */
 const happy = (winner) => {
     changeFase('victoryScreen');
     document.getElementById('winnerBox').innerHTML = `<p>HA GANADO EL ${winner}</p>`;
+    document.getElementById('reset').innerHTML = `<p onclick="reset()">PLAY AGAIN?</p>`;
+    
 }
+/* PLAY AGAIN */
+const reset = () => {
+    window.location.reload();
+}
+
+
