@@ -1,6 +1,6 @@
 // MOVEMENT FIGHTER
-let x_pos=0;
-let x_posB=0;
+let xPos=0;
+let xPosB=0;
 // let y_pos=0;
 
 let velX=30;
@@ -28,28 +28,28 @@ function pusher (elEvento){
         //     changeFase('chooseF');
         //     break;
         case 39: //DERECHA TOP
-            if (x_pos<59){
-                x_pos+=velX;
+            if (xPos<59){
+                xPos+=velX;
             }
-            movementX(x_pos, 'topFighter');
+            movementX(xPos, 'topFighter');
             break;
         case 37: //IZQUIERDA TOP
-            if (x_pos>0){
-                x_pos-=velX;
+            if (xPos>0){
+                xPos-=velX;
             }
-            movementX(x_pos, 'topFighter');
+            movementX(xPos, 'topFighter');
             break;
         case 66: //DERECHA BOTTOM
-            if (x_posB<59){
-                x_posB+=velX;
+            if (xPosB<59){
+                xPosB+=velX;
             }
-            movementX(x_posB, 'bottomFighter');
+            movementX(xPosB, 'bottomFighter');
             break;
         case 86: //IZQUEIRDA BOTTOM
-            if (x_posB>0){
-                x_posB-=velX;
+            if (xPosB>0){
+                xPosB-=velX;
             }
-            movementX(x_posB, 'bottomFighter');
+            movementX(xPosB, 'bottomFighter');
             break;
         case 68:
             fighting('bottomAttack');
@@ -186,21 +186,23 @@ const fighting = (action) => {
     p2 = team2[countBottom];
 
     let fighterTop = document.getElementById('topFighter');
-    let posX_Top = fighterTop.style.left;
+    let posXTop = 0;
+    posXTop = fighterTop.style.left;
 
     let fighterBottom = document.getElementById('bottomFighter');
-    let posX_Bot = fighterBottom.style.left;
+    let posXBot = 0;
+    posXBot = fighterBottom.style.left;
 
-    console.log(`Esta es la posición del luchador de arriba ${posX_Top}`);
-    console.log(`Esta es la posición del luchador de abajo ${posX_Bot}`);
+    console.log(`Esta es la posición del luchador de arriba ${posXTop}`);
+    console.log(`Esta es la posición del luchador de abajo ${posXBot}`);
 
     if (action == 'topAttack'){
-        if (posX_Top==posX_Bot){
+        if (posXTop==posXBot){
             p1.hit(p2);
         }
     }
     if (action == 'bottomAttack'){
-        if (posX_Top==posX_Bot){
+        if (posXTop==posXBot){
             p2.hit(p1);
         }
     }
@@ -238,7 +240,6 @@ const happy = (winner) => {
     changeFase('victoryScreen');
     document.getElementById('winnerBox').innerHTML = `<p>HA GANADO EL ${winner}</p>`;
     document.getElementById('reset').innerHTML = `<p onclick="reset()">PLAY AGAIN?</p>`;
-    
 }
 /* PLAY AGAIN */
 const reset = () => {
