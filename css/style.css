@@ -145,10 +145,6 @@ body{
     height: 30%;
     width: 90em;
 }
-#topScene{
-    background-color: cyan;
-}
-
 .boxFighter{
     position: relative;
     height: 90%;
@@ -158,11 +154,13 @@ body{
     align-items: center;
     background-color: darkred;
 }
+#topScene{
+    background-color: cyan;
+}
 #topFighter{
-
     background-color: darkorchid;
 }
-#centerBox{
+/* #centerBox{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -190,7 +188,7 @@ body{
     height: 90%;
     width: 30%;
     background-color: blue;
-}
+} */
 #bottomFighter{
     background-color: darkolivegreen;
 }

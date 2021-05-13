@@ -1,5 +1,6 @@
 // MOVEMENT FIGHTER
 let x_pos=0;
+let x_posB=0;
 // let y_pos=0;
 
 let velX=30;
@@ -26,29 +27,35 @@ function pusher (elEvento){
         // case 13:
         //     changeFase('chooseF');
         //     break;
-        case 39: //DERECHA
+        case 39: //DERECHA TOP
             if (x_pos<59){
                 x_pos+=velX;
             }
             movementX(x_pos, 'topFighter');
             break;
-        case 37: //IZQUIERDA
+        case 37: //IZQUIERDA TOP
             if (x_pos>0){
                 x_pos-=velX;
             }
             movementX(x_pos, 'topFighter');
             break;
-        case 38: //ARRIBA
-            if (y_pos>0){
-                y_pos-=velY;
+        case 66: //DERECHA BOTTOM
+            if (x_posB<59){
+                x_posB+=velX;
             }
-            movementY(y_pos);
+            movementX(x_posB, 'bottomFighter');
             break;
-        case 40: //ABAJO
-            if (y_pos<sizeY-1){
-                y_pos+=velY;
+        case 86: //IZQUEIRDA BOTTOM
+            if (x_posB>0){
+                x_posB-=velX;
             }
-            movementY(y_pos);
+            movementX(x_posB, 'bottomFighter');
+            break;
+        case 68:
+            fighting('bottomAttack');
+            break;
+        case 80:
+            fighting('topAttack');
             break;
     }
 };
@@ -182,12 +189,27 @@ const changeDeadFighterBottom = (index, positionF) => {
 /* FIGHT ACTION */
 let countTop=0;
 let countBottom=0;
-const fighting = () => {
+const fighting = (action) => {
     p1 = team1[countTop];
     p2 = team2[countBottom];
+    let fighterTop = document.getElementById('topFighter');
+    let posX_Top = fighterTop.style.left;
+    let fighterBottom = document.getElementById('bottomFighter');
+    let posX_Bot = fighterBottom.style.left;
+    console.log(posX_Top);
+    console.log(posX_Bot);
 
-    p1.hit(p2);
-    p2.hit(p1);
+    if (action == 'topAttack'){
+        if (posX_Top==posX_Bot){
+            p1.hit(p2);
+        }
+    }
+    if (action == 'bottomAttack'){
+        if (posX_Top==posX_Bot){
+            p2.hit(p1);
+        }
+    }
+
     console.log(`${p1.nombre} tiene: ${p1.vida} de vida`);
     console.log(`${p2.nombre} tiene ${p2.vida} de vida`);
 
@@ -212,13 +234,18 @@ const fighting = () => {
         } else {
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
             console.log(`Victoria del Team 1!!`);
-            happy('TEAM 1');
-            
-            
+            happy('TEAM 1');       
         }
     }
-
 }
+// const fTopAttack = () => {
+//     let ataqueP1 =  p1.hit(p2);
+//     return ataqueP1;
+// }
+
+// const fBottomAttack = () => {
+//     p1 = team1[countTop]
+// }
 
 /* CONGRATULATIONS */
 const happy = (winner) => {
