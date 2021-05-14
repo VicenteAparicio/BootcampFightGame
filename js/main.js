@@ -66,7 +66,7 @@ function pusher (elEvento){
             //     fighting('topAttack');
             // }
             if (team1[1].vida > 0){
-                fighting('topAttack');
+                fighting('topAttack'); 
             }
             break;
     }
@@ -233,6 +233,7 @@ const fighting = (action) => {
             console.log(`Este combate lo ha ganado ${p2.nombre}`);
             countTop+=1;
             changeDeadFighterTop(countTop, 'topFighter');
+            document.getElementById('lifeBarTop').style.width = '60em';
         } else {
             console.log(`Este combate lo ha ganado ${p2.nombre}`);
             console.log(`Victoria del Team 2!!`);
@@ -244,6 +245,7 @@ const fighting = (action) => {
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
             countBottom+=1;
             changeDeadFighterBottom(countBottom, 'bottomFighter');
+            document.getElementById('lifeBarBottom').style.width = '60em';
         } else {
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
             console.log(`Victoria del Team 1!!`);
