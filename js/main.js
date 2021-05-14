@@ -50,14 +50,14 @@ const movementAndAttack = (elEvento) => {
             break;
 
         case 68: // LIGHT LEFT ATTACK "D"
-            if (team2[1].vida > 0 && team1[1].vida > 0){
+            if (team2[1].life > 0 && team1[1].life > 0){
                 
                 fighting('leftAttack');
             }
             break;
 
         case 80: // LIGHT RIGHT ATTACK "P"
-            if (team2[1].vida > 0 && team1[1].vida > 0){
+            if (team2[1].life > 0 && team1[1].life > 0){
                 
                 fighting('rightAttack'); 
             }
@@ -148,32 +148,36 @@ const drop = (ev) => {
 
 /* CONSTRUCTOR FIGHTERS */
 class Fighter{
-    constructor(id, nombre, ataque, defensa, velocidad, suerte){
+    constructor(id, colour, lordName, attack, defense, luck){
         this.id = id;
-        this.nombre = nombre;
-        this.ataque = ataque;
-        this.defensa = defensa;
-        this.velocidad = velocidad;
-        this.suerte = suerte;
-        this.vida = 100;
+        this.colour = colour;
+        this.lordName = lordName;
+        this.attack = attack;
+        this.defense = defense;
+        this.luck = luck;
+        this.life = 100;
     };
 
     hit(enemy){
-        enemy.vida-=Math.round(this.ataque - (enemy.defensa/((Math.random()*this.suerte)+1)));
+        enemy.life-=Math.round(this.attack - (enemy.defense/((Math.random()*this.luck)+1)));
     }
 }
 
-let player1 = new Fighter(1, 'Blue', 9, 4, 6, 5);
-let player2 = new Fighter(2, 'Darksaid', 8, 5, 5, 6);
-let player3 = new Fighter(3, 'Foxel', 7, 6, 7, 8) ;
-let player4 = new Fighter(4, 'Page', 6, 6, 6, 5);
+let player1 = new Fighter(1, 'Grey', 'Luphius McNoland' , 9, 4, 5);
+let player2 = new Fighter(2, 'Blue', 'Drogjard Burnlands', 8, 5, 6);
+let player3 = new Fighter(3, 'Red', 'Thenirk Morrwalder', 7, 6, 4) ;
+let player4 = new Fighter(4, 'Green', 'Jonmark Scarrow', 6, 7, 6);
+let player5 = new Fighter(5, 'Yellow', 'Alisthoir J.Leffang', 7, 5, 5);
+let player6 = new Fighter(6, 'Orange', 'Urrow Temphewar', 8, 3, 6);
 
 
 let allPlayers = {
     '1' : player1,
     '2' : player2,
     '3' : player3,
-    '4' : player4
+    '4' : player4,
+    '5' : player5,
+    '6' : player6
 };
 
 /* ASIGNATION TEAMS */
@@ -187,8 +191,8 @@ const chooseFighter = (fighter, team) => {
         team2.push(allPlayers[fighter]);
     }
     if (team1.length==2 && team2.length==2){
-        console.log(`El team 1 son: ${team1[0].nombre} y ${team1[1].nombre}`);
-        console.log(`El team 2 son: ${team2[0].nombre} y ${team2[1].nombre}`);
+        console.log(`El team 1 son: ${team1[0].lordName} y ${team1[1].lordName}`);
+        console.log(`El team 2 son: ${team2[0].lordName} y ${team2[1].lordName}`);
         allowFight();
     }
     document.getElementById(fighter).draggable = false;
@@ -205,18 +209,18 @@ const placeFighter = (index) => {
     leftF = team1[index];
     rightF = team2[index];
 
-    document.getElementById('leftFighter').innerHTML = `<img id="${leftF.id}" src="img/${leftF.nombre}.png" class="characterPic" alt="Player${leftF.id}">`;
-    document.getElementById('rightFighter').innerHTML = `<img id="${rightF.id}" src="img/${rightF.nombre}.png" class="characterPic" alt="Player${rightF.id}">`; 
+    document.getElementById('leftFighter').innerHTML = `<img id="${leftF.id}" src="assets/fighters/${leftF.colour}1.png" class="characterPic" alt="Player${leftF.id}">`;
+    document.getElementById('rightFighter').innerHTML = `<img id="${rightF.id}" src="assets/fighters/${rightF.colour}1.png" class="characterPic" alt="Player${rightF.id}">`; 
 }
 const changeDeadFighterLeft = (index, positionF) => {
     deadF = team1[index];
     document.getElementById(positionF).innerHTML = "";
-    document.getElementById(positionF).innerHTML = `<img id="${deadF.id}" src="img/${deadF.nombre}.png" class="characterPic" alt="Player${deadF.id}">`;
+    document.getElementById(positionF).innerHTML = `<img id="${deadF.id}" src="assets/fighters/${deadF.colour}1.png" class="characterPic" alt="Player${deadF.id}">`;
 }
 const changeDeadFighterRight = (index, positionF) => {
     dead = team2[index];
     document.getElementById(positionF).innerHTML = "";
-    document.getElementById(positionF).innerHTML = `<img id="${dead.id}" src="img/${dead.nombre}.png" class="characterPic" alt="Player${dead.id}">`;
+    document.getElementById(positionF).innerHTML = `<img id="${dead.id}" src="assets/fighters/${dead.colour}1.png" class="characterPic" alt="Player${dead.id}">`;
 }
 
 /* FIGHT ACTION */
@@ -253,38 +257,38 @@ const fighting = (action) => {
         }
     }
 
-    console.log(`${p1.nombre} tiene: ${p1.vida} de vida`);
-    console.log(`${p2.nombre} tiene ${p2.vida} de vida`);
+    console.log(`${p1.lordName} tiene: ${p1.life} de vida`);
+    console.log(`${p2.lordName} tiene ${p2.life} de vida`);
 
-    if (p1.vida<=0){
+    if (p1.life<=0){
         if(countLeft<1){
-            console.log(`Este combate lo ha ganado ${p2.nombre}`);
+            console.log(`Este combate lo ha ganado ${p2.lordName}`);
             countLeft+=1;
             changeDeadFighterLeft(countLeft, 'leftFighter');
             document.getElementById('lifeBarLeft').style.width = '100%';
         } else {
-            console.log(`Este combate lo ha ganado ${p2.nombre}`);
+            console.log(`Este combate lo ha ganado ${p2.lordName}`);
             console.log(`Victoria del Team 2!!`);
-            setTimeout(() => {happy('TEAM 2');}, 3000);    
+            setTimeout(() => {happy('TEAM 2');}, 2000);    
         }
     }
-    if (p2.vida<=0){
+    if (p2.life<=0){
         if(countRight<1){
-            console.log(`Este combate lo ha ganado ${p1.nombre}`);
+            console.log(`Este combate lo ha ganado ${p1.lordName}`);
             countRight+=1;
             changeDeadFighterRight(countRight, 'rightFighter');
             document.getElementById('lifeBarRight').style.width = '100%';
         } else {
-            console.log(`Este combate lo ha ganado ${p1.nombre}`);
+            console.log(`Este combate lo ha ganado ${p1.lordName}`);
             console.log(`Victoria del Team 1!!`);
-            setTimeout(() => {happy('TEAM 1');}, 3000);      
+            setTimeout(() => {happy('TEAM 1');}, 2000);      
         }
     }
 }
 
 const bar = (damagedFighter, barFighter) =>{
-    damagedFighter.vida>0 ?
-    document.getElementById(barFighter).style.width = damagedFighter.vida +'%'
+    damagedFighter.life>0 ?
+    document.getElementById(barFighter).style.width = damagedFighter.life +'%'
     : document.getElementById(barFighter).style.width = 0;
 }
 
