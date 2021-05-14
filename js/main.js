@@ -52,25 +52,19 @@ function pusher (elEvento){
             movementX(xPosB, 'bottomFighter');
             break;
         case 68:
-            // let validationResult = validationPush();
-            // if (validationResult.style.display!='none'){
-            //     fighting('bottomAttack');
-            // }
             if (team2[1].vida > 0){
                 fighting('bottomAttack');
             }
             break;
         case 80:
-            // let validationResult2 = validationPush();
-            // if (validationResult2.style.display!='none'){
-            //     fighting('topAttack');
-            // }
             if (team1[1].vida > 0){
                 fighting('topAttack'); 
             }
             break;
     }
 };
+
+
 
 const validationPush = () => {
     let validateScreen = document.getElementById('fightScreen');
