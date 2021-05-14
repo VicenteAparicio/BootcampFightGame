@@ -52,13 +52,31 @@ function pusher (elEvento){
             movementX(xPosB, 'bottomFighter');
             break;
         case 68:
-            fighting('bottomAttack');
+            // let validationResult = validationPush();
+            // if (validationResult.style.display!='none'){
+            //     fighting('bottomAttack');
+            // }
+            if (team2[1].vida > 0){
+                fighting('bottomAttack');
+            }
             break;
         case 80:
-            fighting('topAttack');
+            // let validationResult2 = validationPush();
+            // if (validationResult2.style.display!='none'){
+            //     fighting('topAttack');
+            // }
+            if (team1[1].vida > 0){
+                fighting('topAttack');
+            }
             break;
     }
 };
+
+const validationPush = () => {
+    let validateScreen = document.getElementById('fightScreen');
+    return validateScreen;
+}
+
 function systemOn(){
     document.onkeydown = pusher; //capta la pulsación de la tecla y llama a la función pusher
 };
@@ -218,9 +236,7 @@ const fighting = (action) => {
         } else {
             console.log(`Este combate lo ha ganado ${p2.nombre}`);
             console.log(`Victoria del Team 2!!`);
-            setTimeout(()=> {
-                happy('TEAM 2')
-            }, 3000);   
+            setTimeout(() => {happy('TEAM 2');}, 3000);    
         }
     }
     if (p2.vida<=0){
@@ -231,9 +247,7 @@ const fighting = (action) => {
         } else {
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
             console.log(`Victoria del Team 1!!`);
-            setTimeout(()=> {
-                happy('TEAM 1')
-            }, 3000);       
+            setTimeout(() => {happy('TEAM 1');}, 3000);      
         }
     }
 }
@@ -248,7 +262,7 @@ const bar = (damagedFighter, barFighter) =>{
 const happy = (winner) => {
     changeFase('victoryScreen');
     document.getElementById('winnerBox').innerHTML = `<p>HA GANADO EL ${winner}</p>`;
-    document.getElementById('reset').innerHTML = `<p onclick="reset()">PLAY AGAIN?</p>`;
+    setTimeout(() => {document.getElementById('reset').innerHTML = `<p onclick="reset()">PLAY AGAIN?</p>`;}, 2000);
 }
 /* PLAY AGAIN */
 const reset = () => {

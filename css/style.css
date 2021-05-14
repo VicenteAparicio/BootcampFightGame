@@ -208,14 +208,14 @@ body{
     align-items: flex-end;
 }
 .lifeBar{
-    width: 20em;
+    width: 60em;
     height: 100%;
     background-color: red;
 }
 #lifeBarBottom{
     height: 100%;
-    width: 100%;
-    transition: 1s ease-in-out;
+    width: 60em;
+    transition: .5s ease-in-out;
 }
 #lifeTop{
     display: flex;
@@ -223,7 +223,7 @@ body{
 }
 #lifeBarTop{
     height: 100%;
-    width:100%;
+    width:60em;
     transition: 1s ease-in-out;
 }
 .lifeFull {
