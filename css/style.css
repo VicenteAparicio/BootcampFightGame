@@ -124,7 +124,6 @@ body{
     display: none;
     flex-direction: column;
     height: 100vmin;
-    background-color: darkorange;
 }
 /* #scenario{
     background-color: wheat;
@@ -134,7 +133,6 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: grey;
     width: 100%;
     height: 100%;
     min-height: 30em;
@@ -161,15 +159,9 @@ body{
     align-items: center;
     background-color: darkred;
 }
-#leftScene{
-    background-color: cyan;
-}
 #leftFighter{
     background-color: darkorchid;
     left:0%;
-}
-#rightScene{
-    background-color: deeppink;
 }
 #rightFighter{
     background-color: darkolivegreen;
@@ -180,12 +172,12 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
     height: 2em;
 }
 .lifeBar{
     display: flex;
-    width: 30%;
+    width: 20%;
     height: 100%;
     background-color: red;
 }
