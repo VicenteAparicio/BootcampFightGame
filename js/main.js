@@ -63,17 +63,17 @@ const movementAndAttack = (elEvento) => {
             }
             break;
 
-        case 79: // RIGHT DEFENSE"O"
-            defRight = 1;
-            console.log(defRight);
-            console.log(defLeft);
-            break;
+    //     case 79: // RIGHT DEFENSE"O"
+    //         defRight = 1;
+    //         console.log(defRight);
+    //         console.log(defLeft);
+    //         break;
 
-        case 83: // LEFT DEFENSE"O"
-            defLeft = 1;
-            console.log(defRight);
-            console.log(defLeft);
-            break;
+    //     case 83: // LEFT DEFENSE"O"
+    //         defLeft = 1;
+    //         console.log(defRight);
+    //         console.log(defLeft);
+    //         break;
     }
 }
 
@@ -239,7 +239,7 @@ const fighting = (action) => {
         if (posXLeft=='66%'){
             if (posXRight=='0%'){
                 p1.hit(p2);
-                bar(p2, 'lifeBarLeft');
+                bar(p2, 'lifeBarRight');
             }
         }
     }
@@ -248,7 +248,7 @@ const fighting = (action) => {
         if (posXRight=='0%'){
             if (posXLeft=='66%'){
                 p2.hit(p1);
-                bar(p1, 'lifeBarRight');
+                bar(p1, 'lifeBarLeft');
             }
         }
     }

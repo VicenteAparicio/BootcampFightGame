@@ -202,7 +202,7 @@ body{
 .lifeFull {
     height: 100%;
     background-color: chartreuse;
-    transition: .5s ease-in-out;
+    transition: .05s ease-in-out;
 }
 
 
