@@ -124,6 +124,7 @@ body{
     display: none;
     flex-direction: column;
     height: 100vmin;
+    background-color: darkorange;
 }
 /* #scenario{
     background-color: wheat;
@@ -136,100 +137,72 @@ body{
     background-color: grey;
     width: 100%;
     height: 100%;
-    min-height: 20em;
+    min-height: 30em;
+}
+#centerScene{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
 }
 .sectionScene{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 30%;
-    width: 90em;
+    height: 20em;
+    width: 50%;
 }
 .boxFighter{
     position: relative;
     height: 90%;
-    width: 30em;
+    width: 33%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: darkred;
 }
-#topScene{
-    display: flex;
+#leftScene{
     background-color: cyan;
 }
-#topFighter{
+#leftFighter{
     background-color: darkorchid;
 }
-/* #centerBox{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 30%;
-    background-color: darkgoldenrod;
-}
-#leftFist{
-    display: flex ;
-    height: 90%;
-    width: 30%;
-    background-color: blue;
-}
-.space{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 90%;
-    width: 30%;
-    background-color: darkcyan;
-}
-#rightFist{
-    display: flex ;
-    height: 90%;
-    width: 30%;
-    background-color: blue;
-} */
-#bottomScene{
+#rightScene{
     background-color: deeppink;
 }
-#bottomFighter{
+#rightFighter{
     background-color: darkolivegreen;
+    left:66%;
 }
 /* LIFE BARS */
 .barContainer{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     height: 2em;
 }
-#topBarContainer {
-    align-items: flex-end;
-}
 .lifeBar{
-    width: 60em;
+    display: flex;
+    width: 30%;
     height: 100%;
     background-color: red;
 }
-#lifeBarBottom{
-    height: 100%;
-    width: 60em;
-    transition: .5s ease-in-out;
-}
-#lifeTop{
+#lifeRight{
     display: flex;
     justify-content: flex-end;
 }
-#lifeBarTop{
-    height: 100%;
-    width:60em;
-    transition: 1s ease-in-out;
+#lifeBarRight{
+    width: 100%;
+}
+#lifeBarLeft{
+    width: 100%;
 }
 .lifeFull {
+    height: 100%;
     background-color: chartreuse;
+    transition: .5s ease-in-out;
 }
-
 
 
 /* VICTORY SCREEN */

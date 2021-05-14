@@ -1,70 +1,68 @@
 // MOVEMENT FIGHTER
-let xPos=0;
+let xPos=66;
 let xPosB=0;
 // let y_pos=0;
 
-let velX=30;
+let velX=33;
 // let velY=1;
 function movementX(x, fighters){
     let fighter1 = document.getElementById(fighters); //obtengo posición del div con id fighter 
-    fighter1.style.left= x +'em'; //añado el sumatorio de la variable al style left de la posición del div con id 
+    fighter1.style.left = x +'%'; //añado el sumatorio de la variable al style left de la posición del div con id 
 };
 // function movementY(y){
 //     let fighter = document.getElementById('fighter');    
 //     fighter.style.top=y+'em';
 // }
 
-let sizeX = 90;
+// let sizeX = 100;
 // let sizeY = 40;
 
 function pusher (elEvento){
     let evento = window.event || elEvento; //almacena info de la tecla
-    let stromboly = document.getElementById('topScene');
-    stromboly.style.width = sizeX +'em';
+    // let stromboly = document.getElementById('topScene');
+    // stromboly.style.width = sizeX +'%';
     // stromboly.style.height = sizeY +'em';
 
     switch(evento.keyCode){
         // case 13:
         //     changeFase('chooseF');
         //     break;
-        case 39: //DERECHA TOP
+        case 39: //DERECHA LEFT FLECHA DERECHA
             if (xPos<59){
                 xPos+=velX;
             }
-            movementX(xPos, 'topFighter');
+            movementX(xPos, 'rightFighter');
             break;
-        case 37: //IZQUIERDA TOP
+        case 37: //IZQUIERDA LEFT FLECHA IZQUIERDA
             if (xPos>0){
                 xPos-=velX;
             }
-            movementX(xPos, 'topFighter');
+            movementX(xPos, 'rightFighter');
             break;
-        case 66: //DERECHA BOTTOM
+        case 66: //DERECHA RIGHT
             if (xPosB<59){
                 xPosB+=velX;
             }
-            movementX(xPosB, 'bottomFighter');
+            movementX(xPosB, 'leftFighter');
             break;
-        case 86: //IZQUEIRDA BOTTOM
+        case 86: //IZQUEIRDA RIGHT
             if (xPosB>0){
                 xPosB-=velX;
             }
-            movementX(xPosB, 'bottomFighter');
+            movementX(xPosB, 'leftFighter');
             break;
         case 68:
             if (team2[1].vida > 0){
-                fighting('bottomAttack');
+                fighting('rightAttack');
             }
             break;
         case 80:
             if (team1[1].vida > 0){
-                fighting('topAttack'); 
+                fighting('leftAttack'); 
             }
             break;
     }
 };
-
-
 
 const validationPush = () => {
     let validateScreen = document.getElementById('fightScreen');
@@ -168,66 +166,64 @@ const allowFight = () => {
 }
 
 /* ASIGNATION CHARACTER TO FIGHT SCENE */ 
-let topF;
-let bottomF;
+let leftF;
+let rightF;
 let deadF;
 const placeFighter = (index) => {
-    topF = team1[index];
-    bottomF = team2[index];
+    leftF = team1[index];
+    rightF = team2[index];
 
-    document.getElementById('topFighter').innerHTML = `<img id="${topF.id}" src="img/${topF.nombre}.png" class="characterPic" alt="Player${topF.id}">`;
-    document.getElementById('bottomFighter').innerHTML = `<img id="${bottomF.id}" src="img/${bottomF.nombre}.png" class="characterPic" alt="Player${bottomF.id}">`; 
+    document.getElementById('leftFighter').innerHTML = `<img id="${leftF.id}" src="img/${leftF.nombre}.png" class="characterPic" alt="Player${leftF.id}">`;
+    document.getElementById('bottomFighter').innerHTML = `<img id="${rightF.id}" src="img/${rightF.nombre}.png" class="characterPic" alt="Player${rightF.id}">`; 
 }
-const changeDeadFighterTop = (index, positionF) => {
+const changeDeadFighterLeft = (index, positionF) => {
     deadF = team1[index];
     document.getElementById(positionF).innerHTML = "";
     document.getElementById(positionF).innerHTML = `<img id="${deadF.id}" src="img/${deadF.nombre}.png" class="characterPic" alt="Player${deadF.id}">`;
 }
-const changeDeadFighterBottom = (index, positionF) => {
+const changeDeadFighterRight = (index, positionF) => {
     dead = team2[index];
     document.getElementById(positionF).innerHTML = "";
     document.getElementById(positionF).innerHTML = `<img id="${dead.id}" src="img/${dead.nombre}.png" class="characterPic" alt="Player${dead.id}">`;
 }
 
-
 /* FIGHT ACTION */
-let countTop=0;
-let countBottom=0;
+let countLeft=0;
+let countRight=0;
 const fighting = (action) => {
-    p1 = team1[countTop];
-    p2 = team2[countBottom];
+    p1 = team1[countLeft];
+    p2 = team2[countRight];
 
-    let fighterTop = document.getElementById('topFighter');
-    let posXTop = 0;
-    posXTop = fighterTop.style.left;
+    let fighterLeft = document.getElementById('leftFighter');
+    let posXLeft = 0;
+    posXLeft = fighterLeft.style.left;
 
-    let fighterBottom = document.getElementById('bottomFighter');
-    let posXBot = 0;
-    posXBot = fighterBottom.style.left;
+    let fighterRight = document.getElementById('rightFighter');
+    let posXRight = 0;
+    posXRight = fighterRight.style.left;
 
-    if (action == 'topAttack'){
-        if (posXTop==posXBot){
+    if (action == 'leftAttack'){
+        if (posXLeft=='66%'){
             p1.hit(p2);
-            bar(p2, 'lifeBarBottom')
+            bar(p2, 'lifeBarLeft')
         }
     }
-    if (action == 'bottomAttack'){
+    if (action == 'rightAttack'){
         if (posXTop==posXBot){
             p2.hit(p1);
-            bar(p1, 'lifeBarTop')
+            bar(p1, 'lifeBarRight')
         }
     }
 
     console.log(`${p1.nombre} tiene: ${p1.vida} de vida`);
     console.log(`${p2.nombre} tiene ${p2.vida} de vida`);
 
-
     if (p1.vida<=0){
-        if(countTop<1){
+        if(countLeft<1){
             console.log(`Este combate lo ha ganado ${p2.nombre}`);
-            countTop+=1;
-            changeDeadFighterTop(countTop, 'topFighter');
-            document.getElementById('lifeBarTop').style.width = '60em';
+            countLeft+=1;
+            changeDeadFighterLeft(countLeft, 'leftFighter');
+            document.getElementById('lifeBarLeft').style.width = '100%';
         } else {
             console.log(`Este combate lo ha ganado ${p2.nombre}`);
             console.log(`Victoria del Team 2!!`);
@@ -235,11 +231,11 @@ const fighting = (action) => {
         }
     }
     if (p2.vida<=0){
-        if(countBottom<1){
+        if(countRight<1){
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
-            countBottom+=1;
-            changeDeadFighterBottom(countBottom, 'bottomFighter');
-            document.getElementById('lifeBarBottom').style.width = '60em';
+            countRight+=1;
+            changeDeadFighterRight(countLeft, 'rightFighter');
+            document.getElementById('lifeBarRight').style.width = '100%';
         } else {
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
             console.log(`Victoria del Team 1!!`);
