@@ -72,7 +72,7 @@ const changeFase = (destiny) => {
         arrayFaseId.push(arrayFase[i].id);
     }
     arrayFaseFade = arrayFaseId.filter(val => !destiny.includes(val));
-    setTimeout(() => {document.getElementById(destiny).style.display = "flex";}, 1000);
+    setTimeout(() => {document.getElementById(destiny).style.display = "flex";}, 100);
     
     for(let _fase of arrayFaseFade){
         document.getElementById(_fase).style.display = "none";
@@ -112,12 +112,12 @@ class Fighter{
         this.ataque = ataque;
         this.defensa = defensa;
         this.velocidad = velocidad;
-        this.suerte = (Math.round((Math.random()*suerte)*100)/100)+1;
+        this.suerte = suerte;
         this.vida = 60;
     };
 
     hit(enemy){
-        enemy.vida-=Math.round(this.ataque - (enemy.defensa/this.suerte));
+        enemy.vida-=Math.round(this.ataque - (enemy.defensa/((Math.random()*this.suerte)+1)));
     }
 }
 
@@ -193,17 +193,16 @@ const fighting = (action) => {
     let posXBot = 0;
     posXBot = fighterBottom.style.left;
 
-    console.log(`Esta es la posición del luchador de arriba ${posXTop}`);
-    console.log(`Esta es la posición del luchador de abajo ${posXBot}`);
-
     if (action == 'topAttack'){
         if (posXTop==posXBot){
             p1.hit(p2);
+            bar(p2, 'lifeBarBottom')
         }
     }
     if (action == 'bottomAttack'){
         if (posXTop==posXBot){
             p2.hit(p1);
+            bar(p1, 'lifeBarTop')
         }
     }
 
@@ -219,7 +218,9 @@ const fighting = (action) => {
         } else {
             console.log(`Este combate lo ha ganado ${p2.nombre}`);
             console.log(`Victoria del Team 2!!`);
-            happy('TEAM 2');
+            setTimeout(()=> {
+                happy('TEAM 2')
+            }, 3000);   
         }
     }
     if (p2.vida<=0){
@@ -230,9 +231,17 @@ const fighting = (action) => {
         } else {
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
             console.log(`Victoria del Team 1!!`);
-            happy('TEAM 1');       
+            setTimeout(()=> {
+                happy('TEAM 1')
+            }, 3000);       
         }
     }
+}
+
+const bar = (damagedFighter, barFighter) =>{
+    damagedFighter.vida>0 ?
+    document.getElementById(barFighter).style.width = damagedFighter.vida+'em'
+    : document.getElementById(barFighter).style.width = 0;
 }
 
 /* CONGRATULATIONS */
