@@ -1,76 +1,108 @@
 // MOVEMENT FIGHTER
-let xPos=66;
-let xPosB=0;
-// let y_pos=0;
-
-let velX=33;
-// let velY=1;
-function movementX(x, fighters){
+const movementX = (x, fighters) => {
     let fighter1 = document.getElementById(fighters); //obtengo posición del div con id fighter 
     fighter1.style.left = x +'%'; //añado el sumatorio de la variable al style left de la posición del div con id 
 };
-// function movementY(y){
-//     let fighter = document.getElementById('fighter');    
-//     fighter.style.top=y+'em';
-// }
 
-// let sizeX = 100;
-// let sizeY = 40;
+let xPosR=66;
+let xPosL=0;
+let velX=33;
 
-function pusher (elEvento){
+const movementAndAttack = (elEvento) => {
     let evento = window.event || elEvento; //almacena info de la tecla
-    // let stromboly = document.getElementById('topScene');
-    // stromboly.style.width = sizeX +'%';
-    // stromboly.style.height = sizeY +'em';
 
     switch(evento.keyCode){
-        // case 13:
-        //     changeFase('chooseF');
-        //     break;
+
         case 39: //DERECHA LEFT FLECHA DERECHA
-            if (xPos<59){
-                xPos+=velX;
+            if (xPosR<59){
+                xPosR+=velX;
             }
-            movementX(xPos, 'rightFighter');
+            console.log(`Posición R ${xPosR} y l  ${xPosL}`)
+            movementX(xPosR, 'rightFighter');
+            console.log(`Posición R ${xPosR} y l  ${xPosL}`)
             break;
+
         case 37: //IZQUIERDA LEFT FLECHA IZQUIERDA
-            if (xPos>0){
-                xPos-=velX;
+            if (xPosR>0){
+                xPosR-=velX;
             }
-            movementX(xPos, 'rightFighter');
+            console.log(`Posición R ${xPosR} y l  ${xPosL}`)
+            movementX(xPosR, 'rightFighter');
+            console.log(`Posición R ${xPosR} y l  ${xPosL}`)
             break;
-        case 66: //DERECHA RIGHT
-            if (xPosB<59){
-                xPosB+=velX;
+
+        case 66: // DERECHA RIGHT
+            if (xPosL<59){
+                xPosL+=velX;
             }
-            movementX(xPosB, 'leftFighter');
+            console.log(`Posición R ${xPosR} y l  ${xPosL}`)
+            movementX(xPosL, 'leftFighter');
+            console.log(`Posición R ${xPosR} y l  ${xPosL}`)
             break;
-        case 86: //IZQUEIRDA RIGHT
-            if (xPosB>0){
-                xPosB-=velX;
+
+        case 86: // IZQUIERDA RIGHT
+            if (xPosL>0){
+                xPosL-=velX;
             }
-            movementX(xPosB, 'leftFighter');
+            console.log(`Posición R ${xPosR} y l  ${xPosL}`)
+            movementX(xPosL, 'leftFighter');
+            console.log(`Posición R ${xPosR} y l  ${xPosL}`)
             break;
-        case 68:
-            if (team2[1].vida > 0){
-                fighting('rightAttack');
+
+        case 68: // LIGHT LEFT ATTACK "D"
+            if (team2[1].vida > 0 && team1[1].vida > 0){
+                
+                fighting('leftAttack');
             }
             break;
-        case 80:
-            if (team1[1].vida > 0){
-                fighting('leftAttack'); 
+
+        case 80: // LIGHT RIGHT ATTACK "P"
+            if (team2[1].vida > 0 && team1[1].vida > 0){
+                
+                fighting('rightAttack'); 
             }
+            break;
+
+        case 79: // RIGHT DEFENSE"O"
+            defRight = 1;
+            console.log(defRight);
+            console.log(defLeft);
+            break;
+
+        case 83: // LEFT DEFENSE"O"
+            defLeft = 1;
+            console.log(defRight);
+            console.log(defLeft);
             break;
     }
-};
-
-const validationPush = () => {
-    let validateScreen = document.getElementById('fightScreen');
-    return validateScreen;
 }
 
+// let defRight = 0;
+// let defLeft = 0;
+// const defense = (eventoPress) => {
+//     let eventoDef = window.event || eventoPress; //almacena info de la tecla
+//     switch(eventoDef.keyCode){
+//         case 79: // RIGHT DEFENSE"O"
+//             defRight = 1;
+//             console.log(defRight);
+//             console.log(defLeft);
+//             break;
+//         case 83: // LEFT DEFENSE"O"
+//             defLeft = 1;
+//             console.log(defRight);
+//             console.log(defLeft);
+//             break;
+//     }
+// }
+
+
+// const validationPush = () => {
+//     let validateScreen = document.getElementById('fightScreen');
+//     return validateScreen;
+// }
+
 function systemOn(){
-    document.onkeydown = pusher; //capta la pulsación de la tecla y llama a la función pusher
+    document.onkeydown = movementAndAttack; //capta la pulsación de la tecla y llama a la función pusher
 };
 systemOn();
 
@@ -111,7 +143,7 @@ const drop = (ev) => {
     chooseFighter(data, teamSelect)
 
     /* PREVENT OVERLAP */
-    ev.target.ondrop="";
+    ev.target.ondrop = "";
 }
 
 /* CONSTRUCTOR FIGHTERS */
@@ -123,7 +155,7 @@ class Fighter{
         this.defensa = defensa;
         this.velocidad = velocidad;
         this.suerte = suerte;
-        this.vida = 60;
+        this.vida = 100;
     };
 
     hit(enemy){
@@ -174,7 +206,7 @@ const placeFighter = (index) => {
     rightF = team2[index];
 
     document.getElementById('leftFighter').innerHTML = `<img id="${leftF.id}" src="img/${leftF.nombre}.png" class="characterPic" alt="Player${leftF.id}">`;
-    document.getElementById('bottomFighter').innerHTML = `<img id="${rightF.id}" src="img/${rightF.nombre}.png" class="characterPic" alt="Player${rightF.id}">`; 
+    document.getElementById('rightFighter').innerHTML = `<img id="${rightF.id}" src="img/${rightF.nombre}.png" class="characterPic" alt="Player${rightF.id}">`; 
 }
 const changeDeadFighterLeft = (index, positionF) => {
     deadF = team1[index];
@@ -195,23 +227,29 @@ const fighting = (action) => {
     p2 = team2[countRight];
 
     let fighterLeft = document.getElementById('leftFighter');
-    let posXLeft = 0;
+    let posXLeft;
     posXLeft = fighterLeft.style.left;
 
     let fighterRight = document.getElementById('rightFighter');
-    let posXRight = 0;
+    let posXRight;
     posXRight = fighterRight.style.left;
 
     if (action == 'leftAttack'){
+        console.log(posXLeft)
         if (posXLeft=='66%'){
-            p1.hit(p2);
-            bar(p2, 'lifeBarLeft')
+            if (posXRight=='0%'){
+                p1.hit(p2);
+                bar(p2, 'lifeBarLeft');
+            }
         }
     }
     if (action == 'rightAttack'){
-        if (posXTop==posXBot){
-            p2.hit(p1);
-            bar(p1, 'lifeBarRight')
+        console.log(posXRight)
+        if (posXRight=='0%'){
+            if (posXLeft=='66%'){
+                p2.hit(p1);
+                bar(p1, 'lifeBarRight');
+            }
         }
     }
 
@@ -234,7 +272,7 @@ const fighting = (action) => {
         if(countRight<1){
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
             countRight+=1;
-            changeDeadFighterRight(countLeft, 'rightFighter');
+            changeDeadFighterRight(countRight, 'rightFighter');
             document.getElementById('lifeBarRight').style.width = '100%';
         } else {
             console.log(`Este combate lo ha ganado ${p1.nombre}`);
@@ -246,7 +284,7 @@ const fighting = (action) => {
 
 const bar = (damagedFighter, barFighter) =>{
     damagedFighter.vida>0 ?
-    document.getElementById(barFighter).style.width = damagedFighter.vida+'em'
+    document.getElementById(barFighter).style.width = damagedFighter.vida +'%'
     : document.getElementById(barFighter).style.width = 0;
 }
 

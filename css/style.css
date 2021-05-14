@@ -166,6 +166,7 @@ body{
 }
 #leftFighter{
     background-color: darkorchid;
+    left:0%;
 }
 #rightScene{
     background-color: deeppink;
