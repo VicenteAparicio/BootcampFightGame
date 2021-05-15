@@ -307,7 +307,7 @@ const fighting = (action) => {
     }
     if (action == 'leftDefenseOn'){
         defenseLeft=1;
-        console.log('Defense Left '+defenseLeft)
+        console.log('Defense Left '+defenseLeft);
         defenseFrameOn(p1, 'leftFighter');
         
     }
