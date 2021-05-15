@@ -8,13 +8,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <title>Swordman Honor - Age of Madness</title>
+    <title>Swordman's Honor - Age of Madness</title>
 </head>
 <body>
     <div id="globalContainer">
 
         <section id="start" class="screen cLight font">
-            <span id="startButton" class="pusher" onclick="fillFighters(), changeFase('chooseF'), playVFX('intro')">Start</span>
+            <div id="logoBox">
+                <div id="bigLogo">
+                    <div class="logoTitle">SWORDMAN'S HONOR</div>
+                    <div class="logoTitle">AGE OF MADNESS</div>
+                </div>
+                <div id="startButtonBox" class="pusher"></div>
+            </div>
+            <span id="developer">Game Develop by Vicente Aparicio</span>
+            
         </section>
 
         <section id="chooseF" class="screen cLight font">
@@ -25,7 +33,7 @@
             <span id="characterBoxPics"></span>
 
             <div id="infoCharacters" class="font">
-                <div id="infoButton" onclick="showHideInfo()">INFO</div>
+                <div id="infoButton" class="pusher" onclick="showHideInfo()">INFO</div>
                 <div id="infoContainer"></div>
             </div>
 
@@ -48,7 +56,6 @@
             </div>
 
             <div id="fightButton" class="pusher"></div>
-            <div class="footer"></div>
 
         </section>
 
@@ -56,7 +63,7 @@
         <section id="fightScreen" class="screen cLight font">
 
             <span class="titleTeams">IT IS AN HONOR DIE HERE!</span>
-            <img id="pauseSound" src="assets/img/icoSound.png" onclick="pauseVFX('fightTheme')"></img>
+            <img id="pauseSound" class="pusher" src="assets/img/icoSound.png" onclick="pauseVFX('fightTheme')"></img>
 
             <div id="fightScene">
                 
@@ -134,8 +141,6 @@
                 </div>
 
             </div>
-
-            <div class="footer"></div>
 
         </section>
         

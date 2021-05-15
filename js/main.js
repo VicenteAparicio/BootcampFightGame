@@ -151,11 +151,16 @@ const stopAction = (elEvento2) => {
 function systemOn(){
     document.onkeydown = movementAndAttack; //capta la pulsación de la tecla y llama a la función pusher
     document.onkeyup = stopAction;
-    
 };
 systemOn();
 
+/* START */
+setTimeout(() => {
+    document.getElementById('startButtonBox').innerHTML = `
+    <span id="startButton" class="pusher" onclick="fillFighters(), changeFase('chooseF'), playVFX('intro')">START</span>`;
+}, 5000);
 
+/* CHANGE FASE MANAGEMENT */
 const changeFase = (destiny) => {
     let arrayFaseId = [];
     let arrayFase = document.getElementsByTagName('section');
