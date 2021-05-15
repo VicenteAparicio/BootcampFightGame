@@ -247,7 +247,7 @@ const chooseFighter = (fighter, team) => {
     document.getElementById(fighter).draggable = false;
 };
 const allowFight = () => {
-    document.getElementById('fightButton').innerHTML = `<span onclick="changeFase('fightScreen'), changeImage(team1[0], 'leftFighter', 'GuardGif.gif'), changeImage(team2[0], 'rightFighter', 'GuardGif.gif') ">GO FIGHT</span>`;
+    document.getElementById('fightButton').innerHTML = `<span onclick="changeFase('fightScreen'), changeImage(team1[0], 'leftFighter', 'GuardGif.gif'), changeImage(team2[0], 'rightFighter', 'GuardGif.gif'), stopVFX('intro'), playVFX('fightTheme')">GO FIGHT</span>`;
 }
 
 /* ASIGNATION IMAGE CHARACTERS ON FIGHT SCENE */ 
@@ -265,11 +265,6 @@ const changeImage = (fighter, position, action) => {
             <div class="teclas">LEFT: L_ARROW - RIGHT: R_ARROW - HIT: P - DEF: O</div>`;
     }
 
-}
-
-/* FILL FIGHTERS DATA ON FIGHT SCENE */
-const addFighterData = (index) => {
-    document.getElementById
 }
 
 /* FIGHT ACTION */
@@ -455,4 +450,9 @@ const pauseVFX = (vfxRef) => {
         document.getElementById(vfxRef).play();
     }
     
+}
+
+const stopVFX = (vfxRef) => {
+    document.getElementById(vfxRef).src="";
+
 }
