@@ -160,14 +160,14 @@ const drag = (ev) => {
 
 const drop = (ev) => {
     ev.preventDefault();
-    let data = ev.dataTransfer.getData("id");
-    ev.target.appendChild(document.getElementById(data));
+    let dataId = ev.dataTransfer.getData("id");
+    ev.target.appendChild(document.getElementById(dataId));
 
     /* CALL TO CHOOSE FIGHTER FUNCTION WITH ID AND TEAM PARAMETER */ 
     let teamSelect = ev.path[1].id;
-    console.log('Fighter ID '+ data)
+    console.log('Fighter ID '+ dataId)
     console.log('Which team you drop? '+ teamSelect)
-    chooseFighter(data, teamSelect)
+    chooseFighter(dataId, teamSelect)
 
     /* PREVENT OVERLAP */
     ev.target.ondrop = "";
@@ -209,45 +209,12 @@ let allPlayers = {
 /* FILL FIGHTERS TO SELECTION AREA */
 const fillFighters = () => {
     for (let i = 1; i<7; i++){
-    let fighterInfo = allPlayers[i];
-    document.getElementById('characterBoxPics').innerHTML +=
-    `<div class="cBoxPic"><img id="${fighterInfo.id}" class="characterPic" dragabble="true" ondragstart="drag(event)" src="assets/fighters/${fighterInfo.colour}IdleGif.gif" alt="Player${fighterInfo.id}">`;
+        let fighterInfo = allPlayers[i];
+        document.getElementById('characterBoxPics').innerHTML +=
+            `<div class="cBoxPic"><img id="${fighterInfo.id}" class="characterPic" dragabble="true" ondragstart="drag(event)" src="assets/fighters/${fighterInfo.colour}IdleGif.gif" alt="Player${fighterInfo.id}">`;
     }
 }
-/* ASIGNATION TEAMS */
-let team1 = [];
-let team2 = [];
-
-const chooseFighter = (fighter, team) => { 
-    if (team=='team1' && team1.length<2){
-        team1.push(allPlayers[fighter]);
-    } else if (team == 'team2' && team2.length<2) {
-        team2.push(allPlayers[fighter]);
-    }
-    if (team1.length==2 && team2.length==2){
-        console.log(`El team 1 son: ${team1[0].lordName} y ${team1[1].lordName}`);
-        console.log(`El team 2 son: ${team2[0].lordName} y ${team2[1].lordName}`);
-        allowFight();
-    }
-    document.getElementById(fighter).draggable = false;
-};
-const allowFight = () => {
-    document.getElementById('fightButton').innerHTML = `<span onclick="changeFase('fightScreen'), placeFighter(0)">GO FIGHT</span>`;
-}
-
-/* ASIGNATION CHARACTER TO FIGHT SCENE */ 
-let leftF;
-let rightF;
-let dead;
-let deadF;
-const placeFighter = (index) => {
-    leftF = team1[index];
-    rightF = team2[index];
-
-    document.getElementById('leftFighter').innerHTML = `<img id="${leftF.id}" src="assets/fighters/${leftF.colour}GuardGif.gif" class="characterPic" alt="Player${leftF.id}">`;
-    document.getElementById('rightFighter').innerHTML = `<img id="${rightF.id}" src="assets/fighters/${rightF.colour}GuardGif.gif" class="characterPic" alt="Player${rightF.id}">`; 
-}
-
+/* FILL INFORMATION FIGHTERS */
 let showHideCount=0;
 const showHideInfo = () => {
     if (showHideCount==0){
@@ -270,21 +237,52 @@ const showHideInfo = () => {
     }
 }
 
-/* FIGHT ACTION */
-const changeDeadFighterLeft = (index, position) => {
-    deadF = team1[index];
-    document.getElementById(position).innerHTML = "";
-    document.getElementById(position).innerHTML = `<img id="${deadF.id}" src="assets/fighters/${deadF.colour}GuardGif.gif" class="characterPic" alt="Player${deadF.id}">`;
-}
-const changeDeadFighterRight = (index, position) => {
-    dead = team2[index];
-    document.getElementById(position).innerHTML = "";
-    document.getElementById(position).innerHTML = `<img id="${dead.id}" src="assets/fighters/${dead.colour}GuardGif.gif" class="characterPic" alt="Player${dead.id}">`;
-}
-const changeImage = (fighter, position, action) => {
-    document.getElementById(position).innerHTML = `<img id="${fighter.id}" src="assets/fighters/${fighter.colour}${action}" class="characterPic" alt="Player${fighter.id}">`;
+/* ASIGNATION TEAMS */
+let team1 = [];
+let team2 = [];
+const chooseFighter = (fighter, team) => { 
+    if (team=='team1' && team1.length<2){
+        team1.push(allPlayers[fighter]);
+    } else if (team == 'team2' && team2.length<2) {
+        team2.push(allPlayers[fighter]);
+    }
+    if (team1.length==2 && team2.length==2){
+        console.log(`El team 1 son: ${team1[0].lordName} y ${team1[1].lordName}`);
+        console.log(`El team 2 son: ${team2[0].lordName} y ${team2[1].lordName}`);
+        allowFight();
+    }
+    document.getElementById(fighter).draggable = false;
+};
+const allowFight = () => {
+    document.getElementById('fightButton').innerHTML = `<span onclick="changeFase('fightScreen'), changeImage(team1[0], 'leftFighter', 'GuardGif.gif'), changeImage(team2[0], 'rightFighter', 'GuardGif.gif') ">GO FIGHT</span>`;
 }
 
+/* ASIGNATION IMAGE CHARACTERS ON FIGHT SCENE */ 
+const changeImage = (fighter, position, action) => {
+    document.getElementById(position).innerHTML = `<img id="${fighter.id}" src="assets/fighters/${fighter.colour}${action}" class="characterPic" alt="Player${fighter.id}">`;
+
+    if (position=='leftFighter'){
+        document.getElementById("leftFighterData").innerHTML = `
+            <div class="nameTitle">${fighter.lordName}</div>
+            <div class="teclas">LEFT: V - RIGHT: B - HIT: D - DEF: S </div>`;
+    }
+    if (position=='rightFighter'){
+        document.getElementById("rightFighterData").innerHTML = `
+            <div class="nameTitle">${fighter.lordName}</div>
+            <div class="teclas">LEFT: L_ARROW - RIGHT: R_ARROW - HIT: P - DEF: O</div>`;
+    }
+
+}
+
+
+/* FILL FIGHTERS DATA ON FIGHT SCENE */
+const addFighterData = (index) => {
+    document.getElementById
+}
+
+
+
+/* FIGHT ACTION */
 let countLeft=0;
 let countRight=0;
 let defenseLeft=0;
@@ -364,7 +362,8 @@ const fighting = (action) => {
         if(countLeft<1){
             console.log(`Este combate lo ha ganado ${p2.lordName}`);
             countLeft+=1;
-            changeDeadFighterLeft(countLeft, 'leftFighter');
+            p1=team1[countLeft];
+            changeImage(p1, 'leftFighter', 'GuardGif.gif');
             document.getElementById('lifeBarLeft').style.width = '100%';
         } else {
             console.log(`Este combate lo ha ganado ${p2.lordName}`);
@@ -376,7 +375,8 @@ const fighting = (action) => {
         if(countRight<1){
             console.log(`Este combate lo ha ganado ${p1.lordName}`);
             countRight+=1;
-            changeDeadFighterRight(countRight, 'rightFighter');
+            p2=team2[countRight];
+            changeImage(p2, 'rightFighter', 'GuardGif.gif');
             document.getElementById('lifeBarRight').style.width = '100%';
         } else {
             console.log(`Este combate lo ha ganado ${p1.lordName}`);

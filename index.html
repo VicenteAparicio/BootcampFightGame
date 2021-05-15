@@ -13,7 +13,7 @@
     <div id="globalContainer">
 
         <section id="start" class="screen cLight font">
-            <span id="startButton" class="pusher" onclick="fillFighters();changeFase('chooseF')">Start</span>
+            <span id="startButton" class="pusher" onclick="fillFighters(), changeFase('chooseF')">Start</span>
         </section>
 
         <section id="chooseF" class="screen cLight font">
@@ -74,9 +74,10 @@
                         <div id="rightFighter" class="boxFighter"></div>
                     </div>
                 </div>
-                <div id="fightersData">
-                    <div id="leftFighterData"></div>
-                    <div id="rightFighterData"></div>
+
+                <div id="boxFightersData">
+                    <div id="leftFighterData" class="fightersData"></div>
+                    <div id="rightFighterData" class="fightersData"></div>
                 </div>
 
             </div>

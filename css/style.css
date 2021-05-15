@@ -190,15 +190,13 @@ body{
     flex-direction: column;
     height: 100vmin;
 }
-/* #scenario{
-    background-color: wheat;
-} */
+
 #fightScene{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
     height: 100%;
     min-height: 30em;
 }
@@ -206,7 +204,7 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 90%;
+    width: 100%;
 }
 .sectionScene{
     display: flex;
@@ -225,11 +223,9 @@ body{
     align-items: center;
 }
 #leftFighter{
-    
     left:0%;
 }
 #rightFighter{
-    
     left:66%;
     transform: scaleX(-1);
 }
@@ -238,14 +234,15 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     height: 2em;
+    margin-bottom: 1em;
 }
 .lifeBar{
     display: flex;
     width: 20%;
     height: 100%;
-    background-color: red;
+    background-color: rgb(163, 0, 0);
 }
 #lifeRight{
     display: flex;
@@ -259,10 +256,36 @@ body{
 }
 .lifeFull {
     height: 100%;
-    background-color: chartreuse;
+    background-color: rgb(60, 119, 0);
     transition: .05s ease-in-out;
 }
+/* FIGHTERS DATA AND CONTROLS */
+#boxFightersData{
+    display: flex;
+    flex-direction: row;
+    height: 2em;
+    width: 100%;
+    margin-top: 2em;
+}
+#leftFighterData{
 
+}
+#rightFighterData{
+    align-items: flex-end;
+}
+.fightersData {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.nameTitle{
+    font-size: 1.2em;
+}
+.teclas{
+    font-size: .9em;
+    margin-top: 1em;
+    color: grey;
+}
 
 /* VICTORY SCREEN */
 #victoryScreen{
