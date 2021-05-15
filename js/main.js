@@ -1,3 +1,4 @@
+
 // MOVEMENT FIGHTER
 const movementX = (x, fighters) => {
     let fighter1 = document.getElementById(fighters); //obtengo posición del div con id fighter 
@@ -72,42 +73,6 @@ const stopAction = (elEvento2) => {
     let eventoDef = window.event || elEvento2; //almacena info de la tecla
     if (team2[1].life > 0 && team1[1].life > 0){
         switch(eventoDef.keyCode){
-        //     case 39: //DERECHA LEFT FLECHA DERECHA
-        //     if (xPosR<59){
-        //         xPosR+=velX;
-        //     }
-        //     console.log(`Posición R ${xPosR} y l  ${xPosL}`)
-        //     movementX(xPosR, 'rightFighter');
-        //     console.log(`Posición R ${xPosR} y l  ${xPosL}`)
-        //     break;
-
-        // case 37: //IZQUIERDA LEFT FLECHA IZQUIERDA
-        //     if (xPosR>0){
-        //         xPosR-=velX;
-        //     }
-        //     console.log(`Posición R ${xPosR} y l  ${xPosL}`)
-        //     movementX(xPosR, 'rightFighter');
-        //     console.log(`Posición R ${xPosR} y l  ${xPosL}`)
-        //     break;
-
-        // case 66: // DERECHA RIGHT "B"
-        //     if (xPosL<59){
-        //         xPosL+=velX;
-        //     }
-        //     console.log(`Posición R ${xPosR} y l  ${xPosL}`)
-        //     movementX(xPosL, 'leftFighter');
-        //     console.log(`Posición R ${xPosR} y l  ${xPosL}`)
-        //     break;
-
-        // case 86: // IZQUIERDA RIGHT "V"
-        //     if (xPosL>0){
-        //         xPosL-=velX;
-        //     }
-        //     console.log(`Posición R ${xPosR} y l  ${xPosL}`)
-        //     movementX(xPosL, 'leftFighter');
-        //     console.log(`Posición R ${xPosR} y l  ${xPosL}`)
-        //     break;
-
         case 68: // LIGHT LEFT ATTACK "D"
             fighting('leftAttackFrameOff');
             break;
@@ -130,6 +95,7 @@ const stopAction = (elEvento2) => {
 function systemOn(){
     document.onkeydown = movementAndAttack; //capta la pulsación de la tecla y llama a la función pusher
     document.onkeyup = stopAction;
+    
 };
 systemOn();
 
@@ -274,13 +240,10 @@ const changeImage = (fighter, position, action) => {
 
 }
 
-
 /* FILL FIGHTERS DATA ON FIGHT SCENE */
 const addFighterData = (index) => {
     document.getElementById
 }
-
-
 
 /* FIGHT ACTION */
 let countLeft=0;
@@ -338,23 +301,31 @@ const fighting = (action) => {
         if (defenseLeft==0){
             changeImage(p1, 'leftFighter', 'Attack.png');
             if (posXLeft=='66%' && posXRight=='0%' && defenseRight==0){
+                playVFX('bloodyHit')
                 p1.hit(p2);
                 bar(p2, 'lifeBarRight');
-            }    
-        }
+            } else if (posXRight=='0%' && posXLeft=='66%' && defenseRight==1){
+                playVFX('blockedHit');
+            } else {
+                playVFX('airHit');
+            } 
+        }   
     }
     if (action == 'rightAttack'){
         if (defenseRight==0){
             changeImage(p2, 'rightFighter', 'Attack.png');
             if (posXRight=='0%' && posXLeft=='66%' && defenseLeft==0){
+                playVFX('bloodyHit')
                 p2.hit(p1);
                 bar(p1, 'lifeBarLeft');
+            } else if (posXRight=='0%' && posXLeft=='66%' && defenseLeft==1){
+                playVFX('blockedHit');
+            } else {
+                playVFX('airHit');
             }
         }
     }
     
-
-
     console.log(`${p1.lordName} tiene: ${p1.life} de vida`);
     console.log(`${p2.lordName} tiene ${p2.life} de vida`);
 
@@ -403,4 +374,10 @@ const reset = () => {
     window.location.reload();
 }
 
+/* AUDIO */
+const playVFX = (vfxRef) => {
+    document.getElementById(vfxRef).play();
+}
 
+
+playVFX('intro');
