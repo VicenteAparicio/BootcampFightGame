@@ -64,8 +64,8 @@ body{
     position: absolute;
     right: 2em;
     top: 1em;
+    width: 50px;
     cursor: pointer;
-    font-size: 2em;
 }
 
 #characterBoxPics{

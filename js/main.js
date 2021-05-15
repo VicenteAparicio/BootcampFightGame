@@ -1,5 +1,5 @@
 
-// MOVEMENT FIGHTER
+// MOVEMENT - ATTACKS - COOLDOWNS
 const movementX = (x, fighters) => {
     let fighter1 = document.getElementById(fighters); //obtengo posición del div con id fighter 
     fighter1.style.left = x +'%'; //añado el sumatorio de la variable al style left de la posición del div con id 
@@ -8,6 +8,22 @@ const movementX = (x, fighters) => {
 let xPosR=66;
 let xPosL=0;
 let velX=33;
+let cdHeavyL=0;
+let cdHeavyR=0;
+let cdLightL=0;
+let cdLightR=0;
+const cdHeavyLeft = () => {
+    setTimeout(() => {cdHeavyL=0}, 2000);
+}
+const cdHeavyRight = () => {
+    setTimeout(() => {cdHeavyR=0}, 2000);
+}
+const cdLightLeft = () => {
+    setTimeout(() => {cdLightL=0}, 800);
+}
+const cdLightRight = () => {
+    setTimeout(() => {cdLightR=0}, 800);
+}
 
 const movementAndAttack = (elEvento) => {
     let evento = window.event || elEvento; //almacena info de la tecla
@@ -51,27 +67,43 @@ const movementAndAttack = (elEvento) => {
                 break;
 
             case 65: // HEAVY LEFT ATTACK "A"
-                if (xPosL<65){
-                    xPosL+=velX;
-                    movementX(xPosL, 'leftFighter');
-                    fighting('heavyLeftAttack');
+                if(cdHeavyL==0){
+                    if (xPosL<65){
+                        xPosL+=velX;
+                        movementX(xPosL, 'leftFighter');
+                        fighting('heavyLeftAttack');
+                        cdHeavyL=1;
+                        cdHeavyLeft(); 
+                    }
                 }
                 break;
 
             case 73: // HEAVY RIGHT ATTACK "I"
-                if (xPosR>32){
-                    xPosR-=velX;
-                    movementX(xPosR, 'rightFighter');
-                    fighting('heavyRightAttack'); 
+                if(cdHeavyR==0){
+                    if (xPosR>32){
+                        xPosR-=velX;
+                        movementX(xPosR, 'rightFighter');
+                        fighting('heavyRightAttack');
+                        cdHeavyR=1;
+                        cdHeavyRight(); 
+                    }
                 }
                 break;
 
             case 68: // LIGHT LEFT ATTACK "D"
-                fighting('leftAttack');
+                if(cdLightL==0){
+                    fighting('leftAttack');
+                    cdLightL=1;
+                    cdLightLeft();
+                }
                 break;
 
             case 80: // LIGHT RIGHT ATTACK "P"
-                fighting('rightAttack'); 
+                if(cdLightR==0){
+                    fighting('rightAttack'); 
+                    cdLightR=1;
+                    cdLightRight();
+                }
                 break;
 
             case 83: // LEFT DEFENSE "S"
@@ -369,6 +401,7 @@ const fighting = (action) => {
             } 
         }  
     }
+    
     if (action == 'heavyRightAttack'){
         posXRight = fighterRight.style.left;
         if (defenseRight==0){
