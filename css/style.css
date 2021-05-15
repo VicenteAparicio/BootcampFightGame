@@ -1,7 +1,16 @@
+/* GLOBAL SETS */
+.cLight{
+    color: white;
+}
+.font{
+    font-family: 'Press Start 2P', cursive;
+}
+
 body{
     all: unset;
     background-color: black;
 }
+
 #globalContainer{
     width: 100%;
     height: 100%;
@@ -75,9 +84,14 @@ body{
     margin-top: 1em;
     cursor: pointer;
 }
+#infoButton:hover{
+    color: grey;
+}
+
 #infoContainer{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
     font-size: .9em;
     margin-top: 1em;
@@ -92,14 +106,17 @@ body{
 .infoFighter #namek p{
     display: block ;    
 }
-.infoFighter p{
-    all: unset;
-}
 
 .attributesF{
     width: 12em;
 }
-
+.titlesInfo{
+    all: unset;
+    color:grey;
+}
+.attributesInfo {
+    color: white;
+}
 
 
 

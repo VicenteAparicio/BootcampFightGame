@@ -127,8 +127,6 @@ const stopAction = (elEvento2) => {
     }
 }
 
-
-
 function systemOn(){
     document.onkeydown = movementAndAttack; //capta la pulsación de la tecla y llama a la función pusher
     document.onkeyup = stopAction;
@@ -240,6 +238,7 @@ const allowFight = () => {
 /* ASIGNATION CHARACTER TO FIGHT SCENE */ 
 let leftF;
 let rightF;
+let dead;
 let deadF;
 const placeFighter = (index) => {
     leftF = team1[index];
@@ -272,29 +271,19 @@ const showHideInfo = () => {
 }
 
 /* FIGHT ACTION */
-const changeDeadFighterLeft = (index, positionF) => {
+const changeDeadFighterLeft = (index, position) => {
     deadF = team1[index];
-    document.getElementById(positionF).innerHTML = "";
-    document.getElementById(positionF).innerHTML = `<img id="${deadF.id}" src="assets/fighters/${deadF.colour}GuardGif.gif" class="characterPic" alt="Player${deadF.id}">`;
+    document.getElementById(position).innerHTML = "";
+    document.getElementById(position).innerHTML = `<img id="${deadF.id}" src="assets/fighters/${deadF.colour}GuardGif.gif" class="characterPic" alt="Player${deadF.id}">`;
 }
-const changeDeadFighterRight = (index, positionF) => {
+const changeDeadFighterRight = (index, position) => {
     dead = team2[index];
-    document.getElementById(positionF).innerHTML = "";
-    document.getElementById(positionF).innerHTML = `<img id="${dead.id}" src="assets/fighters/${dead.colour}GuardGif.gif" class="characterPic" alt="Player${dead.id}">`;
+    document.getElementById(position).innerHTML = "";
+    document.getElementById(position).innerHTML = `<img id="${dead.id}" src="assets/fighters/${dead.colour}GuardGif.gif" class="characterPic" alt="Player${dead.id}">`;
 }
-const attackFrameOn = (fighter, position) => {
-    document.getElementById(position).innerHTML = `<img id="${fighter.id}" src="assets/fighters/${fighter.colour}Attack.png" class="characterPic" alt="Player${fighter.id}">`;
+const changeImage = (fighter, position, action) => {
+    document.getElementById(position).innerHTML = `<img id="${fighter.id}" src="assets/fighters/${fighter.colour}${action}" class="characterPic" alt="Player${fighter.id}">`;
 }
-const attackFrameOff = (fighter, position) => {
-    document.getElementById(position).innerHTML = `<img id="${fighter.id}" src="assets/fighters/${fighter.colour}GuardGif.gif" class="characterPic" alt="Player${fighter.id}">`;
-}
-const defenseFrameOn = (fighter, position) => {
-    document.getElementById(position).innerHTML = `<img id="${fighter.id}" src="assets/fighters/${fighter.colour}DefGif.gif" class="characterPic" alt="Player${fighter.id}">`;
-}
-const defenseFrameOff = (fighter, position) => {
-    document.getElementById(position).innerHTML = `<img id="${fighter.id}" src="assets/fighters/${fighter.colour}GuardGif.gif" class="characterPic" alt="Player${fighter.id}">`;
-}
-
 
 let countLeft=0;
 let countRight=0;
@@ -314,42 +303,42 @@ const fighting = (action) => {
 
     if (action == 'leftAttackFrameOff'){
         if (defenseLeft==0){
-            attackFrameOff(p1, 'leftFighter');
+            changeImage(p1, 'leftFighter', 'GuardGif.gif');
         }
     }
 
     if (action == 'rightAttackFrameOff'){
         if (defenseRight==0){
-            attackFrameOff(p2, 'rightFighter');
+            changeImage(p2, 'rightFighter', 'GuardGif.gif');
         }
     }
 
     if (action == 'leftDefenseOff'){
         defenseLeft=0;
-        defenseFrameOff(p1, 'leftFighter');
+        changeImage(p1, 'leftFighter', 'GuardGif.gif');
 
     }
     if (action == 'rightDefenseOff'){
         defenseRight=0;
-        defenseFrameOff(p2, 'rightFighter');
+        changeImage(p2, 'rightFighter', 'GuardGif.gif');
         
     }
     if (action == 'leftDefenseOn'){
         defenseLeft=1;
         console.log('Defense Left '+defenseLeft);
-        defenseFrameOn(p1, 'leftFighter');
+        changeImage(p1, 'leftFighter', 'DefGif.gif');
         
     }
     if (action == 'rightDefenseOn'){
         defenseRight=1;
         console.log('Defense Right ' +defenseRight);
-        defenseFrameOn(p2, 'rightFighter');
+        changeImage(p2, 'rightFighter', 'DefGif.gif');
         
     }
 
     if (action == 'leftAttack'){
         if (defenseLeft==0){
-            attackFrameOn(p1, 'leftFighter');
+            changeImage(p1, 'leftFighter', 'Attack.png');
             if (posXLeft=='66%' && posXRight=='0%' && defenseRight==0){
                 p1.hit(p2);
                 bar(p2, 'lifeBarRight');
@@ -358,7 +347,7 @@ const fighting = (action) => {
     }
     if (action == 'rightAttack'){
         if (defenseRight==0){
-            attackFrameOn(p2, 'rightFighter');
+            changeImage(p2, 'rightFighter', 'Attack.png');
             if (posXRight=='0%' && posXLeft=='66%' && defenseLeft==0){
                 p2.hit(p1);
                 bar(p1, 'lifeBarLeft');
