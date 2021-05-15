@@ -177,18 +177,18 @@ const drop = (ev) => {
 
 /* CONSTRUCTOR FIGHTERS */
 class Fighter{
-    constructor(id, colour, lordName, attack, defense, luck){
+    constructor(id, colour, lordName, damage, defense, luck){
         this.id = id;
         this.colour = colour;
         this.lordName = lordName;
-        this.attack = attack;
+        this.damage = damage;
         this.defense = defense;
         this.luck = luck;
         this.life = 100;
     };
 
     hit(enemy){
-        enemy.life-=Math.round(this.attack - (enemy.defense/((Math.random()*this.luck)+1)));
+        enemy.life-=Math.round(this.damage - (enemy.defense/((Math.random()*this.luck)+1)));
     }
 }
 
@@ -208,7 +208,14 @@ let allPlayers = {
     '5' : player5,
     '6' : player6
 };
-
+/* FILL FIGHTERS TO SELECTION AREA */
+const fillFighters = () => {
+    for (let i = 1; i<7; i++){
+    let fighterInfo = allPlayers[i];
+    document.getElementById('characterBoxPics').innerHTML +=
+    `<div class="cBoxPic"><img id="${fighterInfo.id}" class="characterPic" dragabble="true" ondragstart="drag(event)" src="assets/fighters/${fighterInfo.colour}IdleGif.gif" alt="Player${fighterInfo.id}">`;
+    }
+}
 /* ASIGNATION TEAMS */
 let team1 = [];
 let team2 = [];
@@ -241,6 +248,30 @@ const placeFighter = (index) => {
     document.getElementById('leftFighter').innerHTML = `<img id="${leftF.id}" src="assets/fighters/${leftF.colour}GuardGif.gif" class="characterPic" alt="Player${leftF.id}">`;
     document.getElementById('rightFighter').innerHTML = `<img id="${rightF.id}" src="assets/fighters/${rightF.colour}GuardGif.gif" class="characterPic" alt="Player${rightF.id}">`; 
 }
+
+let showHideCount=0;
+const showHideInfo = () => {
+    if (showHideCount==0){
+        showHideCount=1;
+        for (let i = 1; i<7; i++){
+            let fighterInfo = allPlayers[i];
+            document.getElementById('infoContainer').innerHTML += 
+                `<div class="infoFighter">
+                    <div id="namek" name="lordName" class="attributesF"><p class="titlesInfo">Name:</p><span class="attributesInfo">${fighterInfo.lordName}</span></div>
+                    <div name="damage" class="attributesF"><p class="titlesInfo">Damage:</p><span class="attributesInfo">${fighterInfo.damage}</span></div>
+                    <div name="defense" class="attributesF"><p class="titlesInfo">Defense:</p><span class="attributesInfo">${fighterInfo.defense}</span></div>
+                    <div name="luck" class="attributesF"><p class="titlesInfo">Luck:</p><span class="attributesInfo">${fighterInfo.luck}</span></div>
+                    <div name="life" class="attributesF"><p class="titlesInfo">Life:</p><span class="attributesInfo">${fighterInfo.life}</span></div>
+                    <div name="colour" class="attributesF"><p class="titlesInfo">Colour:</p><span class="attributesInfo">${fighterInfo.colour}</span></div>
+                </div>`;
+        }
+    } else {
+        showHideCount=0;
+        document.getElementById('infoContainer').innerHTML = '';
+    }
+}
+
+/* FIGHT ACTION */
 const changeDeadFighterLeft = (index, positionF) => {
     deadF = team1[index];
     document.getElementById(positionF).innerHTML = "";
@@ -265,8 +296,6 @@ const defenseFrameOff = (fighter, position) => {
 }
 
 
-
-/* FIGHT ACTION */
 let countLeft=0;
 let countRight=0;
 let defenseLeft=0;

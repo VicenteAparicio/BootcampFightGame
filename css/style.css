@@ -49,21 +49,62 @@ body{
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 70%;
-    height: 15em;
     min-width: 20em;
     background-color: grey;
+    
 }
 .cBoxPic{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1em 0;
 }
 .characterPic{
     height: 10em;
     width: 10em;
-    cursor: pointer;
+    cursor: grab;
 
 }
+/* INFO HIDDEN SPACE */
+#infoCharacters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#infoButton {
+    margin-top: 1em;
+    cursor: pointer;
+}
+#infoContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: .9em;
+    margin-top: 1em;
+}
+.infoFighter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 1.8em;
+    line-height: 1.4em;
+}
+.infoFighter #namek p{
+    display: block ;    
+}
+.infoFighter p{
+    all: unset;
+}
+
+.attributesF{
+    width: 12em;
+}
+
+
+
+
+
+
 /* BOTTOM AREA SELECTED TEAMS */
 .centerBox{
     display: flex;
@@ -97,7 +138,7 @@ body{
     justify-content: space-evenly;
     flex-wrap: wrap;
     width: 90%;
-    background-color: grey;
+    
     padding: 1em;    
 }
 .dropPic{
@@ -105,10 +146,17 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15em;
-    height: 15em;
+    width: 10em;
+    height: 10em;
+    background-color: grey;
     border: .4em dotted black;
-    padding: 2em;
+    padding: 1em;
+}
+
+.dropPic img {
+    width: 6em;
+    height: 6em;
+    cursor: initial;
 }
 #fightButton{
     margin: 1.5em 0 0 0 ;

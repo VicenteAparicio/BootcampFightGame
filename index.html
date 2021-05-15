@@ -14,24 +14,20 @@
     <div id="globalContainer">
 
         <section id="start" class="screen cLight font">
-            <span id="startButton" class="pusher" onclick="changeFase('chooseF')">Start</span>
+            <span id="startButton" class="pusher" onclick="fillFighters();changeFase('chooseF')">Start</span>
         </section>
-
 
         <section id="chooseF" class="screen cLight font">
 
             <span id="chooseButton">CHOOSE YOUR FIGHTERS!!</span>
-            <div id="characterBoxPics">
-                <div class="cBoxPic"><img id="1" class="characterPic" draggable="true" ondragstart="drag(event)" src="assets/fighters/GreyIdleGif.gif" alt="Player1"></div>
-                <div class="cBoxPic"><img id="2" class="characterPic" draggable="true" ondragstart="drag(event)" src="assets/fighters/BlueIdleGif.gif" alt="Player2"></div>
-                <div class="cBoxPic"><img id="3" class="characterPic" draggable="true" ondragstart="drag(event)" src="assets/fighters/RedIdleGif.gif" alt="Player3"></div>
-                <div class="cBoxPic"><img id="4" class="characterPic" draggable="true" ondragstart="drag(event)" src="assets/fighters/GreenIdleGif.gif" alt="Player4"></div>
-                <div class="cBoxPic"><img id="5" class="characterPic" draggable="true" ondragstart="drag(event)" src="assets/fighters/YellowIdleGif.gif" alt="Player4"></div>
-                <div class="cBoxPic"><img id="6" class="characterPic" draggable="true" ondragstart="drag(event)" src="assets/fighters/OrangeIdleGif.gif" alt="Player4"></div>
+            <div id="characterBoxPics"></div>
+
+            <div id="infoCharacters" class="font">
+                <div id="infoButton" onclick="showHideInfo()">INFO</div>
+                <div id="infoContainer"></div>
             </div>
 
             <div id="characterDropBox">
-
                 <div id="blockRight" class="blockTeam">
                     <span id="titleTeam1" class="titleTeams">TEAM 1</span>
                     <div id="team1" class="dropBox">
@@ -48,6 +44,7 @@
                     </div>
                 </div>
             </div>
+
             <div id="fightButton" class="pusher"></div>
             <div class="footer"></div>
 
