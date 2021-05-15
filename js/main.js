@@ -289,12 +289,54 @@ const changeImage = (fighter, position, action) => {
     if (position=='leftFighter'){
         document.getElementById("leftFighterData").innerHTML = `
             <div class="nameTitle">${fighter.lordName}</div>
-            <div class="teclas">LEFT: V - RIGHT: B - HIT: D - DEF: S </div>`;
+            <div class="keys">
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/left.png"></img>
+                    <span class="letterKeys">V<span>
+                </div>
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/right.png"></img>
+                    <span class="letterKeys">B<span>
+                </div>
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/light.png"></img>
+                    <span class="letterKeys">D<span>
+                </div>
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/heavy.png"></img>
+                    <span class="letterKeys">A<span>
+                </div>
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/block.png"></img>
+                    <span class="letterKeys">S<span>
+                </div>
+            </div>`;
     }
     if (position=='rightFighter'){
         document.getElementById("rightFighterData").innerHTML = `
             <div class="nameTitle">${fighter.lordName}</div>
-            <div class="teclas">LEFT: L_ARROW - RIGHT: R_ARROW - HIT: P - DEF: O</div>`;
+            <div class="keys">
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/left.png"></img>
+                    <span class="letterKeys">Left<span>
+                </div>
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/right.png"></img>
+                    <span class="letterKeys">Right<span>
+                </div>
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/light.png"></img>
+                    <span class="letterKeys">P<span>
+                </div>
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/heavy.png"></img>
+                    <span class="letterKeys">I<span>
+                </div>
+                <div class="boxKeys">
+                    <img class="imgKeys" src="assets/img/block.png"></img>
+                    <span class="letterKeys">O<span>
+                </div>
+            </div>`;
     }
 
 }
