@@ -379,5 +379,14 @@ const playVFX = (vfxRef) => {
     document.getElementById(vfxRef).play();
 }
 
-
-playVFX('intro');
+let soundCount=0;
+const pauseVFX = (vfxRef) => {
+    if (soundCount == 0){
+        soundCount=1;
+        document.getElementById(vfxRef).pause();
+    } else {
+        soundCount=0;
+        document.getElementById(vfxRef).play();
+    }
+    
+}

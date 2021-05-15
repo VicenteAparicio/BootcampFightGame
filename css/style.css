@@ -45,11 +45,27 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+
 /* TOP AREA SELECTION HERO */
-#chooseButton{
+#selectionHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 4em;
+}
+#chooseTitle{
     font-size: 2em;
-    margin: 1em 0 1.5em 0;
+    margin: 1em 2em 1.5em 0;
     text-align: center;
+}
+#pauseSound {
+    position: absolute;
+    right: 2em;
+    top: 1em;
+    cursor: pointer;
+    font-size: 2em;
 }
 
 #characterBoxPics{
@@ -117,10 +133,6 @@ body{
 .attributesInfo {
     color: white;
 }
-
-
-
-
 
 /* BOTTOM AREA SELECTED TEAMS */
 .centerBox{
