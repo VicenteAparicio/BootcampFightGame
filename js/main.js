@@ -14,7 +14,7 @@ const movementAndAttack = (elEvento) => {
     if (team2[1].life > 0 && team1[1].life > 0){
         switch(evento.keyCode){
 
-            case 39: //DERECHA LEFT FLECHA DERECHA
+            case 39: // RIGHT FIGHTER MOVE RIGHT RIGHT ARROW
                 if (xPosR<59){
                     xPosR+=velX;
                 }
@@ -23,7 +23,7 @@ const movementAndAttack = (elEvento) => {
                 console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 break;
 
-            case 37: //IZQUIERDA LEFT FLECHA IZQUIERDA
+            case 37: // RIGHT FIGHTER MOVE LEFT LEFT ARROW
                 if (xPosR>0){
                     xPosR-=velX;
                 }
@@ -32,7 +32,7 @@ const movementAndAttack = (elEvento) => {
                 console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 break;
 
-            case 66: // DERECHA RIGHT
+            case 66: // LEFT FIGHTER MOVE RIGHT B
                 if (xPosL<59){
                     xPosL+=velX;
                 }
@@ -41,13 +41,29 @@ const movementAndAttack = (elEvento) => {
                 console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 break;
 
-            case 86: // IZQUIERDA RIGHT
+            case 86: // LEFT FIGHTER MOVE LEFT V
                 if (xPosL>0){
                     xPosL-=velX;
                 }
                 console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 movementX(xPosL, 'leftFighter');
                 console.log(`Posición R ${xPosR} y l  ${xPosL}`)
+                break;
+
+            case 65: // HEAVY LEFT ATTACK "A"
+                if (xPosL<65){
+                    xPosL+=velX;
+                    movementX(xPosL, 'leftFighter');
+                    fighting('heavyLeftAttack');
+                }
+                break;
+
+            case 73: // HEAVY RIGHT ATTACK "I"
+                if (xPosR>32){
+                    xPosR-=velX;
+                    movementX(xPosR, 'rightFighter');
+                    fighting('heavyRightAttack'); 
+                }
                 break;
 
             case 68: // LIGHT LEFT ATTACK "D"
@@ -73,6 +89,14 @@ const stopAction = (elEvento2) => {
     let eventoDef = window.event || elEvento2; //almacena info de la tecla
     if (team2[1].life > 0 && team1[1].life > 0){
         switch(eventoDef.keyCode){
+        case 65: // HEAVY LEFT ATTACK "A"
+            fighting('leftAttackFrameOff');
+            break;
+
+        case 73: // HEAVY RIGHT ATTACK "I"
+            fighting('rightAttackFrameOff');
+            break;
+
         case 68: // LIGHT LEFT ATTACK "D"
             fighting('leftAttackFrameOff');
             break;
@@ -153,6 +177,9 @@ class Fighter{
 
     hit(enemy){
         enemy.life-=Math.round(this.damage - (enemy.defense/((Math.random()*this.luck)+1)));
+    }
+    specialHit(enemy){
+        enemy.life-=((this.damage*2)-enemy.defense/((Math.random()*this.luck)+1));
     }
 }
 
@@ -300,26 +327,65 @@ const fighting = (action) => {
     if (action == 'leftAttack'){
         if (defenseLeft==0){
             changeImage(p1, 'leftFighter', 'Attack.png');
-            if (posXLeft=='66%' && posXRight=='0%' && defenseRight==0){
-                playVFX('bloodyHit')
-                p1.hit(p2);
-                bar(p2, 'lifeBarRight');
-            } else if (posXRight=='0%' && posXLeft=='66%' && defenseRight==1){
-                playVFX('blockedHit');
+            if (posXLeft=='66%' && posXRight=='0%'){
+                if (defenseRight==0){
+                    playVFX('bloodyHit')
+                    p1.hit(p2);
+                    bar(p2, 'lifeBarRight');
+                } else if (defenseRight==1){
+                    playVFX('blockedHit');
+                }
             } else {
                 playVFX('airHit');
             } 
         }   
     }
+    
     if (action == 'rightAttack'){
         if (defenseRight==0){
             changeImage(p2, 'rightFighter', 'Attack.png');
-            if (posXRight=='0%' && posXLeft=='66%' && defenseLeft==0){
-                playVFX('bloodyHit')
-                p2.hit(p1);
-                bar(p1, 'lifeBarLeft');
-            } else if (posXRight=='0%' && posXLeft=='66%' && defenseLeft==1){
-                playVFX('blockedHit');
+            if (posXRight=='0%' && posXLeft=='66%'){
+                if (defenseLeft==0){
+                    playVFX('bloodyHit')
+                    p2.hit(p1);
+                    bar(p1, 'lifeBarLeft');
+                } else if (defenseLeft==1){
+                    playVFX('blockedHit');
+                }
+            } else {
+                playVFX('airHit');
+            }
+        }
+    }
+    if (action == 'heavyLeftAttack'){
+        posXLeft = fighterLeft.style.left;
+        if (defenseLeft==0){
+            changeImage(p1, 'leftFighter', 'Attack.png');
+            if (posXLeft=='66%' && posXRight=='0%'){
+                if(defenseRight==0){
+                    playVFX('bloodyHit')
+                    p1.specialHit(p2);
+                    bar(p2, 'lifeBarRight');
+                } else if (defenseRight==1){
+                    playVFX('blockedHit');
+                }
+            } else {
+                playVFX('airHit');
+            } 
+        }  
+    }
+    if (action == 'heavyRightAttack'){
+        posXRight = fighterRight.style.left;
+        if (defenseRight==0){
+            changeImage(p2, 'rightFighter', 'Attack.png');
+            if (posXRight=='0%' && posXLeft=='66%'){
+                if (defenseLeft==0){
+                    playVFX('bloodyHit')
+                    p2.specialHit(p1);
+                    bar(p1, 'lifeBarLeft');
+                } else if (defenseLeft==1){
+                    playVFX('blockedHit');
+                }
             } else {
                 playVFX('airHit');
             }
