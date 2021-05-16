@@ -172,6 +172,7 @@ setTimeout(() => {
     document.getElementById('startButtonBox').innerHTML = `
     <span id="startButton" class="pusher" onclick="fillFighters(), changeFase('chooseF')">START</span>`;
     playVFX('intro');
+    soundCount=0;
 }, 3000);
 
 /* CHANGE FASE MANAGEMENT */
@@ -490,7 +491,7 @@ const playVFX = (vfxRef) => {
     document.getElementById(vfxRef).play();
 }
 
-let soundCount=1;
+let soundCount=0;
 const pauseVFX = (vfxRef) => {
     if (soundCount == 0){
         soundCount=1;
