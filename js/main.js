@@ -12,18 +12,24 @@ let cdHeavyL=0;
 let cdHeavyR=0;
 let cdLightL=0;
 let cdLightR=0;
+let cdHeavyTimer = 2000;
+let cdLighTimer = 500;
 const cdHeavyLeft = () => {
-    setTimeout(() => {cdHeavyL=0}, 2000);
+    setTimeout(() => {cdHeavyL=0}, cdHeavyTimer);
 }
 const cdHeavyRight = () => {
-    setTimeout(() => {cdHeavyR=0}, 2000);
+    setTimeout(() => {cdHeavyR=0}, cdHeavyTimer);
 }
 const cdLightLeft = () => {
-    setTimeout(() => {cdLightL=0}, 800);
+    setTimeout(() => {cdLightL=0}, cdLighTimer);
 }
 const cdLightRight = () => {
-    setTimeout(() => {cdLightR=0}, 800);
+    setTimeout(() => {cdLightR=0}, cdLighTimer);
 }
+const keyColor = (key, timer) => {
+    setTimeout(() => {document.getElementById(key).style.color = 'grey';}, timer);
+}
+
 
 const movementAndAttack = (elEvento) => {
     let evento = window.event || elEvento; //almacena info de la tecla
@@ -34,36 +40,28 @@ const movementAndAttack = (elEvento) => {
                 if (xPosR<59){
                     xPosR+=velX;
                 }
-                console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 movementX(xPosR, 'rightFighter');
-                console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 break;
 
             case 37: // RIGHT FIGHTER MOVE LEFT LEFT ARROW
                 if (xPosR>0){
                     xPosR-=velX;
                 }
-                console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 movementX(xPosR, 'rightFighter');
-                console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 break;
 
             case 66: // LEFT FIGHTER MOVE RIGHT B
                 if (xPosL<59){
                     xPosL+=velX;
                 }
-                console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 movementX(xPosL, 'leftFighter');
-                console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 break;
 
             case 86: // LEFT FIGHTER MOVE LEFT V
                 if (xPosL>0){
                     xPosL-=velX;
                 }
-                console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 movementX(xPosL, 'leftFighter');
-                console.log(`Posición R ${xPosR} y l  ${xPosL}`)
                 break;
 
             case 65: // HEAVY LEFT ATTACK "A"
@@ -73,8 +71,12 @@ const movementAndAttack = (elEvento) => {
                         movementX(xPosL, 'leftFighter');
                         fighting('heavyLeftAttack');
                         cdHeavyL=1;
-                        cdHeavyLeft(); 
+                        cdHeavyLeft();
+
+                        document.getElementById('aKey').style.color = 'brown';
+                        keyColor('aKey', 2000); 
                     }
+                    
                 }
                 break;
 
@@ -85,8 +87,12 @@ const movementAndAttack = (elEvento) => {
                         movementX(xPosR, 'rightFighter');
                         fighting('heavyRightAttack');
                         cdHeavyR=1;
-                        cdHeavyRight(); 
+                        cdHeavyRight();
+
+                        document.getElementById('iKey').style.color = 'brown';
+                        keyColor('iKey', 2000);
                     }
+                    
                 }
                 break;
 
@@ -95,7 +101,11 @@ const movementAndAttack = (elEvento) => {
                     fighting('leftAttack');
                     cdLightL=1;
                     cdLightLeft();
+                    
+                    document.getElementById('dKey').style.color = 'brown';
+                    keyColor('dKey', 500);
                 }
+                
                 break;
 
             case 80: // LIGHT RIGHT ATTACK "P"
@@ -103,6 +113,9 @@ const movementAndAttack = (elEvento) => {
                     fighting('rightAttack'); 
                     cdLightR=1;
                     cdLightRight();
+
+                    document.getElementById('pKey').style.color = 'brown';
+                    keyColor('pKey', 500);
                 }
                 break;
 
@@ -158,7 +171,7 @@ systemOn();
 setTimeout(() => {
     document.getElementById('startButtonBox').innerHTML = `
     <span id="startButton" class="pusher" onclick="fillFighters(), changeFase('chooseF'), playVFX('intro')">START</span>`;
-}, 5000);
+}, 3000);
 
 /* CHANGE FASE MANAGEMENT */
 const changeFase = (destiny) => {
@@ -214,16 +227,18 @@ class Fighter{
 
     hit(enemy){
         enemy.life-=Math.round(this.damage - (enemy.defense/((Math.random()*this.luck)+1)));
+        console.log(Math.round(this.damage - (enemy.defense/((Math.random()*this.luck)+1))))
     }
     specialHit(enemy){
         enemy.life-=((this.damage*2)-enemy.defense/((Math.random()*this.luck)+1));
+        console.log(((this.damage*2)-enemy.defense/((Math.random()*this.luck)+1)))
     }
 }
 
 let player1 = new Fighter(1, 'Grey', 'Luphius McNoland' , 9, 4, 5);
 let player2 = new Fighter(2, 'Blue', 'Drogjard Burnlands', 8, 5, 6);
 let player3 = new Fighter(3, 'Red', 'Thenirk Morrwalder', 7, 6, 4) ;
-let player4 = new Fighter(4, 'Green', 'Jonmark Scarrow', 6, 7, 6);
+let player4 = new Fighter(4, 'Green', 'Jonmark Scarrow', 6, 7, 8);
 let player5 = new Fighter(5, 'Yellow', 'Alisthoir J.Leffang', 7, 5, 5);
 let player6 = new Fighter(6, 'Orange', 'Urrow Temphewar', 8, 3, 6);
 
