@@ -170,7 +170,8 @@ systemOn();
 /* START */
 setTimeout(() => {
     document.getElementById('startButtonBox').innerHTML = `
-    <span id="startButton" class="pusher" onclick="fillFighters(), changeFase('chooseF'), playVFX('intro')">START</span>`;
+    <span id="startButton" class="pusher" onclick="fillFighters(), changeFase('chooseF')">START</span>`;
+    playVFX('intro');
 }, 3000);
 
 /* CHANGE FASE MANAGEMENT */
@@ -489,14 +490,15 @@ const playVFX = (vfxRef) => {
     document.getElementById(vfxRef).play();
 }
 
-let soundCount=0;
+let soundCount=1;
 const pauseVFX = (vfxRef) => {
     if (soundCount == 0){
         soundCount=1;
         document.getElementById(vfxRef).pause();
     } else {
         soundCount=0;
-        document.getElementById(vfxRef).play();
+        let audio = document.getElementById(vfxRef);
+        audio.play();
     }
     
 }

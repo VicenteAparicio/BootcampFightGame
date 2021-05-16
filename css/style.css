@@ -253,7 +253,7 @@ body{
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    background: url(../assets/background/battleBack.png) rgb(72, 72, 72);
+    background: url("../assets/background/battleBack.png") rgb(72, 72, 72);
     background-size: 120vw 18em;
     background-position-x: -18em;
     background-position-y: 2em;
