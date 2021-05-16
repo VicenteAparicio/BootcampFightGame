@@ -74,3 +74,13 @@ Stuff I left behind:
 ![Imagen previa del proyecto](./readmeImg/03.jpg)
 ## What I should do better?
 On this project I would save a lot of time having the right idea of the game from begining. I swap the game base structure several times until I finally choose the definitive idea to work with two days before delivery the project. It is like fighting against myself every step cause the project vision is not clear. The moment I had a good vision about my project I worked faster than the rest of the days. Next time I will save first day entirely to create a good idea to help me to have an early nice vision of the project.
+
+ ***
+
+## Special thanks
+To all of you who offer all your knowledge to everyone so we can learn from each other. 
+To my classroom mates and teacher, and every single one who contribute to make this comunity bigger step by step.
+
+The youtube channel PIX for the awesome 8 bit music 
+
+https://www.youtube.com/channel/UCr3D54lk90oa-ZN9-a1mv1Q
