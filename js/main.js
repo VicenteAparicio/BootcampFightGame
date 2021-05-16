@@ -461,7 +461,7 @@ const bar = (damagedFighter, barFighter) =>{
 /* CONGRATULATIONS */
 const happy = (winner) => {
     changeFase('victoryScreen');
-    document.getElementById('winnerBox').innerHTML = `<p>HA GANADO EL ${winner}</p>`;
+    document.getElementById('winnerBox').innerHTML = `<p>${winner} WINNER!!</p>`;
     setTimeout(() => {document.getElementById('reset').innerHTML = `<p onclick="reset()">PLAY AGAIN?</p>`;}, 2000);
 }
 /* PLAY AGAIN */
