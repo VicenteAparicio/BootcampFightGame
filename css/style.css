@@ -254,9 +254,9 @@ body{
     justify-content: center;
     width: 100%;
     background-color: rgb(72, 72, 72);
-    background-image: url(./assets/background/battleBack.png);
+    background-image: url(../assets/background/battleBack.png);
     background-size: 120vw 18em;
-    background-position-x: -20em;
+    background-position-x: -18em;
     background-position-y: 2em;
 }
 .sectionScene{

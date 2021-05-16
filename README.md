@@ -38,6 +38,7 @@ On this project I had to create a web fight game with HTML, CSS3 and JAVASCRIPT.
 - CSS3
 - JAVASCRIPT
 - PISKEL (pixel art web application)
+- Audacity (audio editor)
 
 This was an awesome project cause I had to challenge myself several times to add different kind of functions. Two days before delivery project I decided change the idea of my game: from a boxing game perspective to a swordman's fight perspective. That way I could work with different conditions and create an atractive game dynamic for gamers. 
 
@@ -60,6 +61,12 @@ You can try yourself here: https://www.piskelapp.com/
 ## What I left behind
 ![Imagen previa del proyecto](./readmeImg/02.jpg)
 The entire project was a race against clock. Only one week to develop a fight game from zero. That is the reason to set a MVP (minimun viable product) and try to reach it sooner as posible. This way you can deep into some details like a nice intro/ending animation. I had no time for that cause it has a lot of work but it is not really relevant for the brief project.
+
+Stuff I left behind:
+- Nice intro/ending game
+- At least three different vs battles
+- Control panel not in the fight screen
+- Characters lore
 
 
 ***
