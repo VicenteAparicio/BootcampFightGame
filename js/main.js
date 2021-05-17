@@ -255,7 +255,7 @@ let allPlayers = {
 };
 /* FILL FIGHTERS TO SELECTION AREA */
 const fillFighters = () => {
-    for (let i = 1; i<7; i++){
+    for (let i in allPlayers){
         let fighterInfo = allPlayers[i];
         document.getElementById('characterBoxPics').innerHTML +=
             `<div class="cBoxPic"><img id="${fighterInfo.id}" class="characterPic" dragabble="true" ondragstart="drag(event)" src="assets/fighters/${fighterInfo.colour}IdleGif.gif" alt="Player${fighterInfo.id}">`;
