@@ -7,7 +7,7 @@
 
 
 
-https://vicenteaparicio.github.io/BootcampFightGame/
+https://vicenteaparicio.github.io/FSD_FightGame_Swordmans/
 
 ### Project details
 
